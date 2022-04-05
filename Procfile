@@ -1,0 +1,1 @@
+web: gunicorn msp4_8gag.wsgi
