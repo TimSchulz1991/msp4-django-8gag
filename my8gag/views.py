@@ -9,6 +9,13 @@ def home(request):
     context = {'posts': posts}
     return render(request, 'my8gag/feed.html', context)
 
+
+def postView(request, pk):
+    post = Post.objects.get(id=pk)
+    context = {'post': post}
+    return render(request, 'my8gag/post_view.html', context)
+
+
 def createPost(request):
     form = PostForm()
 

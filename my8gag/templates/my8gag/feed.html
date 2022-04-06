@@ -6,7 +6,7 @@
 {% for post in posts %}
 <div>
     <p>{{ post.topic }} - {{ post.created }}</p>
-    <p>{{ post.title }}</p>
+    <a href="{% url 'post_view' post.id %}"><p>{{ post.title }}</p></a>
     <img src="{{ post.image.url }}" alt="">
 </div>
 {% endfor %}
