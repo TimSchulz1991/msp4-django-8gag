@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import PostForm
+from .models import Post, Topic, Comment, Profile
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'my8gag/feed.html')
+    posts = Post.objects.all()
+    context = {'posts': posts}
+    return render(request, 'my8gag/feed.html', context)
 
 def createPost(request):
     form = PostForm()

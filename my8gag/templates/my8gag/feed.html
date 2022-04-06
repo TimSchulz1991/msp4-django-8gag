@@ -3,4 +3,11 @@
 {% block content %}
 <h1>My Feed</h1>
 <a href="{% url 'create_post' %}">Create new post</a>
+{% for post in posts %}
+<div>
+    <p>{{ post.topic }} - {{ post.created }}</p>
+    <p>{{ post.title }}</p>
+    <img src="{{ post.image.url }}" alt="">
+</div>
+{% endfor %}
 {% endblock %}
