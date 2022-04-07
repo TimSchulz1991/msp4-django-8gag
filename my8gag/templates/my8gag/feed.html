@@ -13,6 +13,20 @@
     <div>
         <h3>Topics</h3>
         <hr>
+        <div>
+            <a href="{% url 'home' %}">All topics</a>
+        </div>
+        {% for topic in topics %}
+            <div>
+                <a href="{% url 'home' %}?q={{topic.name}}">{{ topic.name }}</a>
+            </div>
+        {% endfor %}
+        <div>
+            <form action="{% url 'home' %}" method="GET">
+                {% csrf_token %}
+                <input type="text" name="q" placeholder="Search for memes...">
+            </form>
+        </div>
     </div>
     <div>
 

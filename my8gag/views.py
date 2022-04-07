@@ -5,8 +5,12 @@ from .models import Post, Topic, Comment, Profile
 
 # Create your views here.
 def home(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    posts = Post.objects.filter(topic__name__icontains=q)
+
+    topics = Topic.objects.all()
+
+    context = {'posts': posts, 'topics': topics}
     return render(request, 'my8gag/feed.html', context)
 
 
