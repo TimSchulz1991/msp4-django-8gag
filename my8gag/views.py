@@ -55,6 +55,7 @@ def postView(request, pk):
     context = {'post': post}
     return render(request, 'my8gag/post_view.html', context)
 
+
 @login_required(login_url='login')
 def createPost(request):
     form = PostForm()
@@ -71,8 +72,10 @@ def createPost(request):
     return render(request, 'my8gag/post_form.html', context)
 
 
+@login_required(login_url='login')
 def deletePost(request, pk):
-    post = Post.objects.get(id=pk)
+    post = Post.objects.get(id=pk)    
+
     if request.method == "POST":
         post.delete()
         return redirect('home')
