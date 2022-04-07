@@ -29,9 +29,11 @@
         </div>
     </div>
     <div>
-
+        
         <a href="{% url 'create_post' %}"><button>Create new post</button></a>
+        {% if posts %}
         {% for post in posts %}
+        
         <div>
             <p>{{ post.topic }} - {{ post.created }} <a
                     href="{% url 'post_delete' post.id %}"><button>Delete</button></a>
@@ -42,6 +44,13 @@
             <img src="{{ post.image.url }}" alt="">
         </div>
         {% endfor %}
+        {% else %}
+        <div>
+            <p>No Memes to see here 😒</p>
+        </div>
+        
+        
+        {% endif %}
     </div>
 </div>
 

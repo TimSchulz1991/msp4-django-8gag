@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .forms import PostForm
 from .models import Post, Topic, Comment, Profile
 
@@ -6,7 +7,11 @@ from .models import Post, Topic, Comment, Profile
 # Create your views here.
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    posts = Post.objects.filter(topic__name__icontains=q)
+    posts = Post.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(title__icontains=q)
+    )
+
 
     topics = Topic.objects.all()
 
