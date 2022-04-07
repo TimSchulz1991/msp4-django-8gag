@@ -1,13 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>My Feed</h1>
-<a href="{% url 'create_post' %}">Create new post</a>
-{% for post in posts %}
-<div>
-    <p>{{ post.topic }} - {{ post.created }} <button><a href="{% url 'post_delete' post.id %}">Delete</a></button></p>
-    <a href="{% url 'post_view' post.id %}"><p>{{ post.title }}</p></a>
-    <img src="{{ post.image.url }}" alt="">
+
+<style>
+    .feed-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+<div class="feed-container">
+    <div>
+        <h3>Topics</h3>
+        <hr>
+    </div>
+    <div>
+
+        <a href="{% url 'create_post' %}"><button>Create new post</button></a>
+        {% for post in posts %}
+        <div>
+            <p>{{ post.topic }} - {{ post.created }} <a
+                    href="{% url 'post_delete' post.id %}"><button>Delete</button></a>
+            </p>
+            <a href="{% url 'post_view' post.id %}">
+                <p>{{ post.title }}</p>
+            </a>
+            <img src="{{ post.image.url }}" alt="">
+        </div>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
+
 {% endblock %}
