@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the post below?</p>
+    <input type="submit" value="Confirm">
+    <a href="{{ request.META.HTTP_REFERER }}">Nope, keep it!</a>
+</form>
+<div>
+    <p>{{ post.topic }} - {{ post.created }}</p>
+    <p>{{ post.title }}</p>
+    <img src="{{ post.image.url }}" alt="A funny Meme">
+</div>
+
+{% endblock %}

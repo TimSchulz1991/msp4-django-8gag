@@ -29,3 +29,13 @@ def createPost(request):
 
     context = {'form': form}
     return render(request, 'my8gag/post_form.html', context)
+
+
+def deletePost(request, pk):
+    post = Post.objects.get(id=pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect('home')
+    
+    context = {'post': post}
+    return render(request, 'my8gag/post_delete.html', context)
