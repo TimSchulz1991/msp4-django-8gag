@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import PostForm
@@ -31,6 +32,10 @@ def loginView(request):
     return render(request, 'my8gag/login_register.html', context)
 
 
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     posts = Post.objects.filter(
@@ -50,7 +55,7 @@ def postView(request, pk):
     context = {'post': post}
     return render(request, 'my8gag/post_view.html', context)
 
-
+@login_required(login_url='login')
 def createPost(request):
     form = PostForm()
 
