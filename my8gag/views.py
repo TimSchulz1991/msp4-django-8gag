@@ -26,7 +26,8 @@ def loginView(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, "Credentials do not match any user in our database")
+            messages.error(
+                request, "Credentials do not match any user in our database")
 
     context = {}
     return render(request, 'my8gag/login_register.html', context)
@@ -36,13 +37,13 @@ def logoutUser(request):
     logout(request)
     return redirect('home')
 
+
 def home(request):
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
     posts = Post.objects.filter(
         Q(topic__name__icontains=q) |
         Q(title__icontains=q)
     )
-
 
     topics = Topic.objects.all()
 
@@ -74,11 +75,11 @@ def createPost(request):
 
 @login_required(login_url='login')
 def deletePost(request, pk):
-    post = Post.objects.get(id=pk)    
+    post = Post.objects.get(id=pk)
 
     if request.method == "POST":
         post.delete()
         return redirect('home')
-    
+
     context = {'post': post}
     return render(request, 'my8gag/post_delete.html', context)
