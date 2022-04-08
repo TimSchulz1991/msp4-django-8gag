@@ -36,11 +36,11 @@
 
         <div>
 
-            <p>{{ post.topic }} - {{ post.created }}
+            <small>{{ post.topic }} - {{ post.created | timesince }} ago
                 {% if request.user == post.author %}
                 <a href="{% url 'post_delete' post.id %}"><button>Delete</button></a>
                 {% endif %}
-            </p>
+            </small>
 
             <a href="{% url 'post_view' post.id %}">
                 <p>{{ post.title }}</p>

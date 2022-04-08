@@ -8,9 +8,18 @@
     <p>{{ post.title }}</p>
     <img src="{{ post.image.url }}" alt="A funny Meme">
 </div>
+{% if request.user.is_authenticated %}
+<div>
+    <h3>Add a comment</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="body" placeholder="Add comment...">
+    </form>
+</div>
+{% endif %}
 <div>
     {% for comment in comments %}
-    <p>{{ comment.author }} | {{ comment.created | timesince }}</p>
+    <small>{{ comment.author }} | {{ comment.created | timesince }} ago</small>
     <p>{{ comment.body }}</p>
     {% endfor %}
 </div>
