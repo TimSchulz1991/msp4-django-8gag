@@ -6,10 +6,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import PostForm
 from .models import Post, Topic, Comment, Profile
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
 def loginView(request):
+    page = 'login'
+
+    if request.user.is_authenticated:
+        return redirect('home') 
 
     if request.method == "POST":
         username = request.POST.get('username')
@@ -29,13 +34,19 @@ def loginView(request):
             messages.error(
                 request, "Credentials do not match any user in our database")
 
-    context = {}
+    context = {'page': page}
     return render(request, 'my8gag/login_register.html', context)
 
 
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
+
+def registerView(request):
+    form = UserCreationForm()
+    context = {'form': form}
+    return render(request, 'my8gag/login_register.html', context)
 
 
 def home(request):
