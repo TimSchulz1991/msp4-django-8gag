@@ -21,6 +21,9 @@
     {% for comment in comments %}
     <small>{{ comment.author }} | {{ comment.created | timesince }} ago</small>
     <p>{{ comment.body }}</p>
+    {% if request.user == comment.author %}
+    <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button>Delete</button></a>
+    {% endif %}
     {% endfor %}
 </div>
 

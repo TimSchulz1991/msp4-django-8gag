@@ -109,6 +109,7 @@ def createPost(request):
 
 @login_required(login_url='login')
 def deletePost(request, pk):
+    text_type = 'post'
     post = Post.objects.get(id=pk)
 
     if request.user != post.author:
@@ -118,5 +119,21 @@ def deletePost(request, pk):
         post.delete()
         return redirect('home')
 
-    context = {'post': post}
+    context = {'post': post, 'text_type': text_type}
+    return render(request, 'my8gag/post_delete.html', context)
+
+@login_required(login_url='login')
+def deleteComment(request, pk):
+    comment = Comment.objects.get(id=pk)
+    post_id = request.GET.get('post_id')
+    # receiving the post_id from line 25 in post_view.html
+    print(post_id)
+    if request.user != comment.author:
+        return redirect('home')
+
+    if request.method == "POST":
+        comment.delete()
+        return redirect('post_view', pk=post_id)
+
+    context = {'comment': comment, 'post_id': post_id}
     return render(request, 'my8gag/post_delete.html', context)
