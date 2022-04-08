@@ -77,6 +77,9 @@ def createPost(request):
 def deletePost(request, pk):
     post = Post.objects.get(id=pk)
 
+    if request.user != post.author:
+        return redirect('home')
+
     if request.method == "POST":
         post.delete()
         return redirect('home')
