@@ -76,7 +76,9 @@ def home(request):
 
 def postView(request, pk):
     post = Post.objects.get(id=pk)
-    context = {'post': post}
+    comments = post.comment_set.all()
+    # to query all comments from the selected post
+    context = {'post': post, 'comments': comments}
     return render(request, 'my8gag/post_view.html', context)
 
 

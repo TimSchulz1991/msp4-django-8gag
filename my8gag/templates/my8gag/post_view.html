@@ -8,5 +8,11 @@
     <p>{{ post.title }}</p>
     <img src="{{ post.image.url }}" alt="A funny Meme">
 </div>
+<div>
+    {% for comment in comments %}
+    <p>{{ comment.author }} | {{ comment.created | timesince }}</p>
+    <p>{{ comment.body }}</p>
+    {% endfor %}
+</div>
 
 {% endblock %}
