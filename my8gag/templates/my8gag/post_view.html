@@ -23,6 +23,7 @@
     <p>{{ comment.body }}</p>
     {% if request.user == comment.author %}
     <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button>Delete</button></a>
+    <!-- Pass in the post_id for the deleteComment view  -->
     {% endif %}
     {% endfor %}
 </div>

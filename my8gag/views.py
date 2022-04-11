@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import PostForm
+from .forms import PostForm, ProfileForm
 from .models import Post, Topic, Comment, Profile
 from django.contrib.auth.forms import UserCreationForm
 
@@ -14,7 +14,7 @@ def loginView(request):
     page = 'login'
 
     if request.user.is_authenticated:
-        return redirect('home') 
+        return redirect('home')
 
     if request.method == "POST":
         username = request.POST.get('username').lower()
@@ -53,7 +53,7 @@ def registerView(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect('home') 
+            return redirect('home')
         else:
             messages.error(request, "The registration was not successful")
 
@@ -81,9 +81,9 @@ def postView(request, pk):
 
     if request.method == "POST":
         comment = Comment.objects.create(
-            author = request.user,
-            post = post,
-            body = request.POST.get('body')
+            author=request.user,
+            post=post,
+            body=request.POST.get('body')
         )
         return redirect('post_view', pk=post.id)
 
@@ -122,12 +122,13 @@ def deletePost(request, pk):
     context = {'post': post, 'text_type': text_type}
     return render(request, 'my8gag/post_delete.html', context)
 
+
 @login_required(login_url='login')
 def deleteComment(request, pk):
     comment = Comment.objects.get(id=pk)
     post_id = request.GET.get('post_id')
     # receiving the post_id from line 25 in post_view.html
-    print(post_id)
+  
     if request.user != comment.author:
         return redirect('home')
 
@@ -137,3 +138,22 @@ def deleteComment(request, pk):
 
     context = {'comment': comment, 'post_id': post_id}
     return render(request, 'my8gag/post_delete.html', context)
+
+
+@login_required(login_url='login')
+def editProfile(request, pk):
+    profile = Profile.objects.get(id=pk)
+    form = ProfileForm(instance=profile)
+
+    if request.user != profile.user:
+        return redirect('home')
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context = {'profile': profile, 'form': form}
+    return render(request, 'my8gag/edit_profile.html', context)

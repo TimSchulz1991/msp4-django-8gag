@@ -59,7 +59,19 @@
     <div>
         {% if request.user.is_authenticated %}
         <div>
+            <h3>My profile</h3>
             <p>Hi @{{request.user.username}}!</p>
+            {% if request.user.profile.profile_image.url != None %}
+            <img src="{{request.user.profile.profile_image.url}}" alt="">
+            {% else %}
+            <p>Wanna add a profile picture?</p>
+            {% endif %}
+            {% if request.user.profile.bio != '' %}
+            <p>{{request.user.profile.bio}}</p>
+            {% else %}
+            <p>Wanna add a bio text?</p>
+            {% endif %}
+            <a href="{% url 'edit_profile' request.user.id %}"><button>Add/change profile info</button></a>
         </div>
         {% else %}
         <div>
