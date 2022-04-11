@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .forms import PostForm, ProfileForm
 from .models import Post, Topic, Comment, Profile
 from django.contrib.auth.forms import UserCreationForm
@@ -78,8 +79,14 @@ def postView(request, pk):
     post = Post.objects.get(id=pk)
     comments = post.comment_set.all().order_by('-created')
     # to query all comments from the selected post
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        liked = True
 
     if request.method == "POST":
+        liked = False
+        if post.likes.filter(id=request.user.id).exists():
+            liked = True
         comment = Comment.objects.create(
             author=request.user,
             post=post,
@@ -87,8 +94,19 @@ def postView(request, pk):
         )
         return redirect('post_view', pk=post.id)
 
-    context = {'post': post, 'comments': comments}
+    context = {'post': post, 'comments': comments, 'liked': liked}
     return render(request, 'my8gag/post_view.html', context)
+
+
+def postLike(request, pk):
+    post = Post.objects.get(id=pk)
+
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+    
+    return HttpResponseRedirect(reverse('post_view', args=[str(pk)]))
 
 
 @login_required(login_url='login')

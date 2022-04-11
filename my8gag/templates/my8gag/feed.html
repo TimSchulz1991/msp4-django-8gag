@@ -46,6 +46,8 @@
                 <p>{{ post.title }}</p>
             </a>
             <img src="{{ post.image.url }}" alt="">
+            <p><i class="far fa-heart"></i>
+                {{ post.number_of_likes }}</p>
         </div>
         {% endfor %}
         {% else %}

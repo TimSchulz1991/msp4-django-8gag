@@ -11,6 +11,6 @@ class PostForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ('bio', 'profile_image',)
 
-        # ('bio', 'profile_image',)
+        

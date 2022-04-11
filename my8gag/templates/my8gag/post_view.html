@@ -7,6 +7,24 @@
     <p>{{ post.topic }} - {{ post.created }}</p>
     <p>{{ post.title }}</p>
     <img src="{{ post.image.url }}" alt="A funny Meme">
+    <br>
+    <strong>
+        {% if request.user.is_authenticated %}
+        <form action="{% url 'post_like' post.id %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            {% if liked %}
+            <button type="submit" name="post_id" value="{{post.id}}"><i
+                    class="fas fa-heart"></i></button>
+            {% else %}
+            <button type="submit" name="post_id" value="{{post.id}}"><i
+                    class="far fa-heart"></i></button>
+            {% endif %}
+        </form>
+        {% else %}
+        <span class="text-secondary"><i class="far fa-heart"></i></span>
+        {% endif %}
+        <span class="text-secondary">{{ post.number_of_likes}}</span>
+    </strong>
 </div>
 {% if request.user.is_authenticated %}
 <div>

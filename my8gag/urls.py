@@ -13,4 +13,5 @@ urlpatterns = [
     path('post_delete/<str:pk>/', views.deletePost, name="post_delete"),
     path('comment_delete/<str:pk>/', views.deleteComment, name="comment_delete"),
     path('edit_profile/<str:pk>/', views.editProfile, name="edit_profile"),
+    path('like/<str:pk>/', views.postLike, name="post_like"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
