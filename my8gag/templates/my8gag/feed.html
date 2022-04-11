@@ -46,8 +46,9 @@
                 <p>{{ post.title }}</p>
             </a>
             <img src="{{ post.image.url }}" alt="">
-            <p><i class="far fa-heart"></i>
-                {{ post.number_of_likes }}</p>
+            <p><i class="fas fa-heart"></i>
+                {{ post.number_of_likes }} </p>
+            
         </div>
         {% endfor %}
         {% else %}
@@ -77,7 +78,8 @@
         </div>
         {% else %}
         <div>
-            <p>Register/Log in to create, comment on and like posts. As a logged in user, you can also add a picture to your profile and add a bio text.</p>
+            <p>Register/Log in to create, comment on and like posts. As a logged in user, you can also add a picture to
+                your profile and add a bio text.</p>
         </div>
         {% endif %}
     </div>
