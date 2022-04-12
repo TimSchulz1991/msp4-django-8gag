@@ -68,7 +68,6 @@ def home(request):
         Q(topic__name__icontains=q) |
         Q(title__icontains=q)
     )
-
     topics = Topic.objects.all()
 
     context = {'posts': posts, 'topics': topics}
@@ -118,7 +117,9 @@ def createPost(request):
         # request.FILES necessary so that file is submitted
         # also required to add enctype to the form
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
             return redirect('home')
 
     context = {'form': form}
