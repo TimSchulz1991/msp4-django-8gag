@@ -32,7 +32,9 @@
 
         <a href="{% url 'create_post' %}"><button>Create new post</button></a>
         {% if posts %}
+
         {% for post in posts %}
+
 
         <div>
 
@@ -49,7 +51,10 @@
             <p><i class="fas fa-heart"></i>
                 {{ post.number_of_likes }} </p>
             
+            <p><i class="fas fa-comments"></i>{{ post.num_comments }}</p>
+            
         </div>
+
         {% endfor %}
         {% else %}
         <div>

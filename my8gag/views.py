@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -67,7 +67,8 @@ def home(request):
     posts = Post.objects.filter(
         Q(topic__name__icontains=q) |
         Q(title__icontains=q)
-    )
+    ).annotate(num_comments=Count('comment'))
+
     topics = Topic.objects.all()
 
     context = {'posts': posts, 'topics': topics}
