@@ -54,6 +54,7 @@ def registerView(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
+            messages.success(request, 'Account created successfully!')
             return redirect('home')
         else:
             messages.error(request, "The registration was not successful")
