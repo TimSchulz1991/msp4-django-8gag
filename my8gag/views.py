@@ -163,7 +163,7 @@ def deleteComment(request, pk):
 
 @login_required(login_url='login')
 def editProfile(request, pk):
-    profile = Profile.objects.get(id=pk)
+    profile = Profile.objects.get(user_id=pk)
     form = ProfileForm(instance=profile)
 
     if request.user != profile.user:
