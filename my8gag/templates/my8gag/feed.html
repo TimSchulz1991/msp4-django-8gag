@@ -68,6 +68,7 @@
             <p>Wanna add a bio text?</p>
             {% endif %}
             <a href="{% url 'edit_profile' request.user.id %}"><button>Add/change profile info</button></a>
+            <a href="{% url 'user_delete' request.user.id %}"><button>Delete my profile</button></a>
         </div>
         {% else %}
         <div>

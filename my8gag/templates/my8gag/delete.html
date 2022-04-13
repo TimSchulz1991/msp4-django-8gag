@@ -13,6 +13,13 @@
     <p>{{ post.title }}</p>
     <img src="{{ post.image.url }}" alt="A funny Meme">
 </div>
+{% elif text_type == 'user' %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete you user account?</p>
+    <input type="submit" value="Confirm">
+    <a href="{{ request.META.HTTP_REFERER }}">Nope, keep it!</a>
+</form>
 {% else %}
 <form action="" method="POST">
     {% csrf_token %}

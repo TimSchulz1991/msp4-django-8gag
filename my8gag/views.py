@@ -141,7 +141,23 @@ def deletePost(request, pk):
         return redirect('home')
 
     context = {'post': post, 'text_type': text_type}
-    return render(request, 'my8gag/post_delete.html', context)
+    return render(request, 'my8gag/delete.html', context)
+
+
+@login_required(login_url='login')
+def deleteUser(request, pk):
+    text_type = 'user'
+    user = User.objects.get(id=pk)
+
+    if not request.user:
+        return redirect('home')
+
+    if request.method == "POST":
+        user.delete()
+        return redirect('home')
+
+    context = {'user': user, 'text_type': text_type}
+    return render(request, 'my8gag/delete.html', context)
 
 
 @login_required(login_url='login')
@@ -158,7 +174,7 @@ def deleteComment(request, pk):
         return redirect('post_view', pk=post_id)
 
     context = {'comment': comment, 'post_id': post_id}
-    return render(request, 'my8gag/post_delete.html', context)
+    return render(request, 'my8gag/delete.html', context)
 
 
 @login_required(login_url='login')
