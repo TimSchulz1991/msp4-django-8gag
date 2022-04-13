@@ -7,7 +7,8 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(null=True, default=None, blank=True)
-    profile_image = CloudinaryField('profile_image', null=True, default=None, blank=True)
+    profile_image = CloudinaryField(
+        'profile_image', null=True, default=None, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -31,7 +32,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def number_of_likes(self):
         return self.likes.count()
 

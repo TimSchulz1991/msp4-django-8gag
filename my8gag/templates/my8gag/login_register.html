@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 {% if page == 'login' %}
@@ -16,14 +17,22 @@
     <a href="{% url 'register' %}">Sign up</a>
 </div>
 {% else %}
-<div>
+<div class='content-section'>
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Register">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join the 8GAG community!</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-info">Sign up</button>
+        </div>
     </form>
-    <p>Already signed up?</p>
-    <a href="{% url 'login' %}">Login</a>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+        </small>
+    </div>
 </div>
 {% endif %}
 {% endblock %}
