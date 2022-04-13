@@ -11,37 +11,37 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
-def loginView(request):
-    page = 'login'
+# def loginView(request):
+#     page = 'login'
 
-    if request.user.is_authenticated:
-        return redirect('home')
+#     if request.user.is_authenticated:
+#         return redirect('home')
 
-    if request.method == "POST":
-        username = request.POST.get('username').lower()
-        password = request.POST.get('password')
+#     if request.method == "POST":
+#         username = request.POST.get('username').lower()
+#         password = request.POST.get('password')
 
-        # try:
-        #     user = User.objects.get(username=username)
-        # except:
-        #     messages.error(request, "User does not exist")
+#         # try:
+#         #     user = User.objects.get(username=username)
+#         # except:
+#         #     messages.error(request, "User does not exist")
 
-        user = authenticate(request, username=username, password=password)
+#         user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.error(
-                request, "Credentials do not match any user in our database")
+#         if user is not None:
+#             login(request, user)
+#             return redirect('home')
+#         else:
+#             messages.error(
+#                 request, "Credentials do not match any user in our database")
 
-    context = {'page': page}
-    return render(request, 'my8gag/login_register.html', context)
+#     context = {'page': page}
+#     return render(request, 'my8gag/login_register.html', context)
 
 
-def logoutUser(request):
-    logout(request)
-    return redirect('home')
+# def logoutUser(request):
+#     logout(request)
+#     return redirect('home')
 
 
 def registerView(request):
@@ -60,7 +60,7 @@ def registerView(request):
             messages.error(request, "The registration was not successful")
 
     context = {'form': form}
-    return render(request, 'my8gag/login_register.html', context)
+    return render(request, 'my8gag/register.html', context)
 
 
 def home(request):

@@ -62,7 +62,7 @@
             {% else %}
             <p>Wanna add a profile picture?</p>
             {% endif %}
-            {% if request.user.profile.bio != '' %}
+            {% if request.user.profile.bio %}
             <p>{{request.user.profile.bio}}</p>
             {% else %}
             <p>Wanna add a bio text?</p>
