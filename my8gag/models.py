@@ -6,8 +6,8 @@ from cloudinary.models import CloudinaryField
 # connected to the User model via the signals.py file
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField()
-    profile_image = CloudinaryField('profile_image')
+    bio = models.TextField(null=True, default=None, blank=True)
+    profile_image = CloudinaryField('profile_image', null=True, default=None, blank=True)
 
     def __str__(self):
         return self.user.username
