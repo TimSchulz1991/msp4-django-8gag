@@ -2,21 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!-- {% if page == 'login' %}
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
 
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="usersame" placeholder="Enter username">
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" placeholder="Enter password">
-        <input type="submit" value="Login">
-    </form>
-    <p>Haven't signed up yet?</p>
-    <a href="{% url 'register' %}">Sign up</a>
-</div>
-{% else %} -->
 <div class='content-section'>
     <form action="" method="POST">
         {% csrf_token %}
@@ -34,5 +20,5 @@
         </small>
     </div>
 </div>
-<!-- {% endif %} -->
+
 {% endblock %}
