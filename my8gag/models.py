@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+
 # connected to the User model via the signals.py file
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -27,9 +28,6 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name='post_author')
     created = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, blank=True, related_name='post_like')
-
-    class Meta:
-        ordering = ['-created']
 
     def __str__(self):
         return self.title

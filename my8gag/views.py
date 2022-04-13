@@ -68,7 +68,7 @@ def home(request):
     posts = Post.objects.filter(
         Q(topic__name__icontains=q) |
         Q(title__icontains=q)
-    ).annotate(num_comments=Count('comment'))
+    ).annotate(num_comments=Count('comment')).order_by('-created')
 
     topics = Topic.objects.all()
 
@@ -164,6 +164,7 @@ def deleteComment(request, pk):
 @login_required(login_url='login')
 def editProfile(request, pk):
     profile = Profile.objects.get(user_id=pk)
+    # it is important to get the user_id, not id of the profile table
     form = ProfileForm(instance=profile)
 
     if request.user != profile.user:
