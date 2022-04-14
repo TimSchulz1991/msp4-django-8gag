@@ -104,6 +104,7 @@ def deletePost(request, pk):
 
     if request.method == "POST":
         post.delete()
+        messages.success(request, 'Your post was deleted successfully!')
         return redirect('home')
 
     context = {'post': post, 'text_type': text_type}
@@ -120,6 +121,7 @@ def deleteUser(request, pk):
 
     if request.method == "POST":
         user.delete()
+        messages.success(request, 'Your profile was deleted successfully!')
         return redirect('home')
 
     context = {'user': user, 'text_type': text_type}
@@ -137,6 +139,7 @@ def deleteComment(request, pk):
 
     if request.method == "POST":
         comment.delete()
+        messages.success(request, 'Your comment was deleted successfully!')
         return redirect('post_view', pk=post_id)
 
     context = {'comment': comment, 'post_id': post_id}
