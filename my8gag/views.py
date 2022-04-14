@@ -16,9 +16,7 @@ def registerView(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
+            user = form.save()
             login(request, user)
             messages.success(request, 'Account created successfully!')
             return redirect('home')
