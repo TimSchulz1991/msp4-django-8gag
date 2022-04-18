@@ -20,11 +20,11 @@
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
                     <a href="{% url 'post_delete' post.id %}"><button
-                            class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
+                            class="btn btn-warning rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
                     {% endif %}
                 </small>
                 <div class="mt-2">
-                    <span class="bg-info rounded-pill px-2">{{ post.topic }}</span>
+                    <span class="bg-secondary rounded-pill px-2">{{ post.topic }}</span>
                 </div>
             </div>
             <h2 class="my-3">{{ post.title }}</h2>
