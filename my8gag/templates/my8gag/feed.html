@@ -2,42 +2,59 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-md-2">
-        <h3>Topics</h3>
-        <hr>
-        <div>
-            <a href="{% url 'home' %}">All topics</a>
+        <div class="text-center">
+            <h3>Topics</h3>
+            <hr>
+            <div>
+                <a href="{% url 'home' %}" class="links lead text-primary">All topics</a>
+            </div>
+            {% for topic in topics %}
+            <div>
+                <a href="{% url 'home' %}?q={{topic.name}}" class="links">{{ topic.name }}</a>
+            </div>
+            {% endfor %}
         </div>
-        {% for topic in topics %}
-        <div>
-            <a href="{% url 'home' %}?q={{topic.name}}">{{ topic.name }}</a>
-        </div>
-        {% endfor %}
-        <div>
+        <div class="mt-3">
             <form action="{% url 'home' %}" method="GET">
                 {% csrf_token %}
-                <input type="text" name="q" placeholder="Search for memes...">
+                <input  class="form-control search-field" type="text" name="q" placeholder="Search for memes...">
             </form>
         </div>
     </div>
     <div class="col-md-7">
         {% if posts %}
         {% for post in posts %}
-        <div>
-            <small>{{ post.topic }} - {{ post.created | timesince }} ago
-                {% if request.user == post.author %}
-                <a href="{% url 'post_delete' post.id %}"><button>Delete</button></a>
+        <div class="card card-feed p-2">
+            <div class="inline">
+                {% if post.author.profile.profile_image.url != None %}
+                <img class="rounded-circle feed-img mr-2" src="{{post.author.profile.profile_image.url}}"
+                    alt="A profile picture of OP">
                 {% endif %}
-            </small>
+                <small>
+                    {{ post.topic }} - {{ post.created | timesince }} ago
+                    {% if request.user == post.author %}
+                    <a href="{% url 'post_delete' post.id %}"><button
+                            class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
+                    {% endif %}
+                </small>
+            </div>
             <a href="{% url 'post_view' post.id %}">
-                <p>{{ post.title }}</p>
+                <h2 class="my-3 links">{{ post.title }}</h2>
             </a>
-            <img src="{{ post.image.url }}" alt="">
-            <p><i class="fas fa-heart"></i>
-                {{ post.number_of_likes }} </p>
-            <p><i class="fas fa-comments"></i>{{ post.num_comments }}</p>
+            <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1">
+            <div>
+                <span class="border-white py-1 px-2"><i class="fa-solid fa-arrow-up"></i>
+                    {{ post.number_of_likes }} </span>
+                {% if post.num_comments == 1 %}
+                <span class="border-white py-1 px-2">{{ post.num_comments }} comment</span>
+                {% else %}
+                <span class="border-white py-1 px-2">{{ post.num_comments }} comments</span>
+                {% endif %}
+            </div>
         </div>
+        <hr>
         {% endfor %}
         {% else %}
         <div>
@@ -48,7 +65,7 @@
     <div class="col-md-3">
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
-            <div class="card text-center p-3">
+            <div class=" card card-profile text-center p-3">
                 <div class="">
                     <h3>My profile</h3>
                 </div>
@@ -70,7 +87,8 @@
         </div>
         {% else %}
         <div class="card text-center p-3">
-            <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture to
+            <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
+                to
                 your profile and add a bio text.</p>
             <a href="{% url 'login' %}"><button
                     class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>

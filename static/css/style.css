@@ -4,6 +4,18 @@ body {
     background: #111827;
 }
 
+.inline {
+    display: inline;
+}
+
+.links {
+    color: #fff;
+}
+
+.border-white {
+    border: 1px solid #fff;
+}
+
 /* Navbar */
 
 nav {
@@ -15,11 +27,35 @@ nav {
     font-size: 28px;
 }
 
+/* Topics section */
+
+.search-field {
+    font-size: .8rem;
+}
+
+/* Feed section */
+
+.feed-img {
+    height: 30px;
+    width: 30px;
+}
+
+hr {
+    background-color: #fff;
+    height: 1px;
+    border: none;
+    width: 80%;
+}
+
 /* Profile section */
 
-.card {
+.card-feed {
     background: #111827;
-    border: #fff 1px solid;
+}
+
+.card-profile {
+    background: #111827;
+    border: 1px solid #fff ;
 }
 
 .account-img {
