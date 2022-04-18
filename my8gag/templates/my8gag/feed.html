@@ -36,12 +36,15 @@
                     alt="A profile picture of OP">
                 {% endif %}
                 <small>
-                    {{ post.topic }} - {{ post.created | timesince }} ago
+                    @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
                     <a href="{% url 'post_delete' post.id %}"><button
                             class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
                     {% endif %}
                 </small>
+                <div class="mt-2">
+                    <span class="bg-info rounded-pill px-2">{{ post.topic }}</span>
+                </div>
             </div>
             <a href="{% url 'post_view' post.id %}">
                 <h2 class="my-3 links">{{ post.title }}</h2>

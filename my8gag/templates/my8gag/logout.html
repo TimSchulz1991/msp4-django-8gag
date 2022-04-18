@@ -3,6 +3,8 @@
 {% block content %}
 <h2>You logged out successfully! </h2>
 <div class="border-top pt-3">
+    <a href="{% url 'home' %}"><h4>To the feed</h4></a>
+    <br>
     <small class="text-muted">
         <a href="{% url 'login' %}">Log in again?</a>
     </small>

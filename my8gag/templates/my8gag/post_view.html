@@ -17,12 +17,15 @@
                     alt="A profile picture of OP">
                 {% endif %}
                 <small>
-                    {{ post.topic }} - {{ post.created | timesince }} ago
+                    @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
                     <a href="{% url 'post_delete' post.id %}"><button
                             class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
                     {% endif %}
                 </small>
+                <div class="mt-2">
+                    <span class="bg-info rounded-pill px-2">{{ post.topic }}</span>
+                </div>
             </div>
             <h2 class="my-3 links">{{ post.title }}</h2>
             <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1">
@@ -78,11 +81,11 @@
             {% for comment in comments %}
             <div class="inline">
                 {% if comment.author.profile.profile_image.url != None %}
-                <img class="rounded-circle feed-img mr-2" src="{{post.author.profile.profile_image.url}}"
+                <img class="rounded-circle feed-img mr-2" src="{{comment.author.profile.profile_image.url}}"
                     alt="A profile picture of OP">
                 {% endif %}
                 <small>
-                    {{ post.topic }} - {{ comment.created | timesince }} ago
+                    @{{ comment.author.username }} - {{ comment.created | timesince }} ago
                     {% if request.user == comment.author %}
                     <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button
                             class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
