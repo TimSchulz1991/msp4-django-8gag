@@ -82,3 +82,9 @@ nav {
 .comment-input {
     width: 70%;
 }
+
+/* Footer */
+
+footer {
+    background: black;
+}

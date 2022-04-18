@@ -16,7 +16,7 @@
     <title>Welcome to 8GAG</title>
 </head>
 
-<body class='text-light'>
+<body class='text-light d-flex flex-column min-vh-100'>
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
@@ -46,7 +46,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container my-3">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 {% for message in messages %}
@@ -58,21 +58,17 @@
             </div>
         </div>
     </div>
-    <main role="main" class="container mt-4">
+    <main role="main" class="container my-2">
         <div class="row">
             <div class="col">
-                <!-- {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-                {% endfor %}
-                {% endif %} -->
                 {% block content %}{% endblock %}
             </div>
         </div>
     </main>
-
+    <footer class="py-3 text-center mt-auto">
+        <h5>8GAG</h5>
+        <small> Copyright 2022 &copy; - All rights reserved</small>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
