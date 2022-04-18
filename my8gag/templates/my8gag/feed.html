@@ -4,7 +4,7 @@
 
 <!-- Topics section -->
 <div class="row mt-3">
-    <div class="col-md-2">
+    <div class="col-lg-3">
         <div class="position-fixed">
             <div class="text-center">
                 <h3>Topics</h3>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Feed section -->
-    <div class="col-md-7">
+    <div class="col-lg-6">
         {% if posts %}
         {% for post in posts %}
         <div class="card card-feed p-2">
@@ -72,7 +72,7 @@
     </div>
 
     <!-- Profile section -->
-    <div class="col-md-3">
+    <div class="col-lg-3 d-none d-lg-block">
 
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
@@ -91,7 +91,7 @@
                     {% endif %}
                 </div>
                 <a href="{% url 'edit_profile' request.user.id %}"><button
-                        class="btn btn-primary rounded-pill btn-profile">Edit</button></a>
+                        class="btn btn-primary rounded-pill btn-profile">Edit profile</button></a>
                 <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete</a>
             </div>
         </div>

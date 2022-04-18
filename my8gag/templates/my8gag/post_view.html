@@ -118,9 +118,8 @@
                     {% endif %}
                 </div>
                 <a href="{% url 'edit_profile' request.user.id %}"><button
-                        class="btn btn-primary rounded-pill btn-profile">Add/change profile
-                        info</button></a>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete my profile</a>
+                        class="btn btn-primary rounded-pill btn-profile">Edit profile</button></a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete</a>
             </div>
         </div>
         {% else %}

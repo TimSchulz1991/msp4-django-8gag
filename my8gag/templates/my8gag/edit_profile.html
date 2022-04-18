@@ -2,18 +2,49 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class='content-section'>
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">My profile info</legend>
-            {{ form|crispy }}
-            <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete my profile</a>
-        </fieldset>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success mr-3">Confirm</button>
+<div class="row">
+    <div class='col-md-8'>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">My profile info</legend>
+                {{ form|crispy }}
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete my profile</a>
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success mr-3">Confirm</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="container d-flex justify-content-center align-items-center">
+            {% if request.user.is_authenticated %}
+            <div class=" card card-profile text-center p-3">
+                <div class="">
+                    <h3>My profile</h3>
+                </div>
+                {% if request.user.profile.profile_image.url != None %}
+                <img class="rounded-circle account-img mx-auto" src="{{request.user.profile.profile_image.url}}"
+                    alt="A profile picture of the user">
+                {% endif %}
+                <div class="media-body mt-3">
+                    <p class="">You are logged in as @{{request.user.username}}!</p>
+                    {% if request.user.profile.bio %}
+                    <p class="text-muted">{{request.user.profile.bio}}</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </form>
+        {% else %}
+        <div class="card card-profile text-center p-3">
+            <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
+                to
+                your profile and add a bio text.</p>
+            <a href="{% url 'login' %}"><button
+                    class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>
+        </div>
+        {% endif %}
+    </div>
+    </div>
 </div>
-
 {% endblock %}
