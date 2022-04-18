@@ -2,13 +2,6 @@
 
 {% block content %}
 
-<!-- <style>
-    .feed-container {
-        display: grid;
-        grid-template-columns: 1fr 4fr 1fr;
-    }
-</style> -->
-
 <div class="row">
     <div class="col-md-2">
         <h3>Topics</h3>
@@ -28,7 +21,7 @@
             </form>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
         {% if posts %}
         {% for post in posts %}
         <div>
@@ -52,28 +45,35 @@
         </div>
         {% endif %}
     </div>
-    <div class="col-md-2">
-        {% if request.user.is_authenticated %}
-        <div>
-            <h3>My profile</h3>
-            <p>Hi @{{request.user.username}}!</p>
-            {% if request.user.profile.profile_image.url != None %}
-            <img src="{{request.user.profile.profile_image.url}}" alt="">
-            {% else %}
-            <p>Wanna add a profile picture?</p>
-            {% endif %}
-            {% if request.user.profile.bio %}
-            <p>{{request.user.profile.bio}}</p>
-            {% else %}
-            <p>Wanna add a bio text?</p>
-            {% endif %}
-            <a href="{% url 'edit_profile' request.user.id %}"><button>Add/change profile info</button></a>
-            <a href="{% url 'user_delete' request.user.id %}"><button>Delete my profile</button></a>
+    <div class="col-md-3">
+        <div class="container d-flex justify-content-center align-items-center">
+            {% if request.user.is_authenticated %}
+            <div class="card text-center p-3">
+                <div class="">
+                    <h3>My profile</h3>
+                </div>
+                {% if request.user.profile.profile_image.url != None %}
+                <img class="rounded-circle account-img mx-auto" src="{{request.user.profile.profile_image.url}}"
+                    alt="A profile picture of the user">
+                {% endif %}
+                <div class="media-body mt-3">
+                    <p class="">You are logged in as @{{request.user.username}}!</p>
+                    {% if request.user.profile.bio %}
+                    <p class="text-muted">{{request.user.profile.bio}}</p>
+                    {% endif %}
+                </div>
+                <a href="{% url 'edit_profile' request.user.id %}"><button
+                        class="btn btn-primary rounded-pill btn-profile">Add/change profile
+                        info</button></a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete my profile</a>
+            </div>
         </div>
         {% else %}
-        <div>
-            <p>Register/Log in to create, comment on and like posts. As a logged in user, you can also add a picture to
+        <div class="card text-center p-3">
+            <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture to
                 your profile and add a bio text.</p>
+            <a href="{% url 'login' %}"><button
+                    class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>
         </div>
         {% endif %}
     </div>

@@ -1,6 +1,10 @@
+/* General Settings */
+
 body {
     background: #111827;
 }
+
+/* Navbar */
 
 nav {
     background: black;
@@ -9,4 +13,24 @@ nav {
 .fa-bars {
     color: #fff;
     font-size: 28px;
+}
+
+/* Profile section */
+
+.card {
+    background: #111827;
+    border: #fff 1px solid;
+}
+
+.account-img {
+    height: 65px;
+    width: 65px;
+}
+
+.btn-profile {
+    font-size: 0.8rem;
+}
+
+.delete-link {
+    font-size: 0.75rem;
 }

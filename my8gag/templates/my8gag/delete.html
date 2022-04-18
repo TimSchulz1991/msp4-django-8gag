@@ -16,7 +16,7 @@
 {% elif text_type == 'user' %}
 <form action="" method="POST">
     {% csrf_token %}
-    <p>Are you sure you want to delete you user account?</p>
+    <p>Are you sure you want to delete your user account?</p>
     <input type="submit" value="Confirm">
     <a href="{{ request.META.HTTP_REFERER }}">Nope, keep it!</a>
 </form>
