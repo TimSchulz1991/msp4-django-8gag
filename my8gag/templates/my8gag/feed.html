@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- Topics section -->
 <div class="row mt-3">
     <div class="col-md-2">
         <div class="text-center">
@@ -23,6 +24,8 @@
             </form>
         </div>
     </div>
+
+    <!-- Feed section -->
     <div class="col-md-7">
         {% if posts %}
         {% for post in posts %}
@@ -62,6 +65,8 @@
         </div>
         {% endif %}
     </div>
+
+    <!-- Profile section -->
     <div class="col-md-3">
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
@@ -86,7 +91,7 @@
             </div>
         </div>
         {% else %}
-        <div class="card text-center p-3">
+        <div class="card card-profile text-center p-3">
             <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
                 to
                 your profile and add a bio text.</p>

@@ -3,48 +3,131 @@
 {% block content %}
 
 
-<div>
-    <p>{{ post.topic }} - {{ post.created }}</p>
-    <p>{{ post.title }}</p>
-    <img src="{{ post.image.url }}" alt="A funny Meme">
-    <br>
-    <strong>
+<div class="row mt-3">
+    <!-- Post section -->
+    <div class="col-md-9">
+
+        <!-- Meme section -->
+        <div class="card card-feed p-2">
+            <div class="inline">
+                {% if post.author.profile.profile_image.url != None %}
+                <img class="rounded-circle feed-img mr-2" src="{{post.author.profile.profile_image.url}}"
+                    alt="A profile picture of OP">
+                {% endif %}
+                <small>
+                    {{ post.topic }} - {{ post.created | timesince }} ago
+                    {% if request.user == post.author %}
+                    <a href="{% url 'post_delete' post.id %}"><button
+                            class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
+                    {% endif %}
+                </small>
+            </div>
+            <h2 class="my-3 links">{{ post.title }}</h2>
+            <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1">
+
+            <!-- Like section -->
+            <div class="d-flex">
+                <div class="border-white py-1 px-2">
+                    {% if request.user.is_authenticated %}
+                    <form action="{% url 'post_like' post.id %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        {% if liked %}
+                        <button type="submit" name="post_id" value="{{post.id}}" class="like-btn  text-primary"><i
+                                class="fa-solid fa-arrow-up"></i><span
+                                class="ml-2">{{ post.number_of_likes}}</span></button>
+                        {% else %}
+                        <button type="submit" name="post_id" value="{{post.id}}" class="like-btn"><i
+                                class="fa-solid fa-arrow-up"></i><span
+                                class="ml-2">{{ post.number_of_likes}}</span></button>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <span><i class="fa-solid fa-arrow-up"></i></span>
+                    <span>{{ post.number_of_likes}}</span>
+                    {% endif %}
+                </div>
+                {% if comments|length == 1 %}
+                <span class="border-white py-1 px-2">{{ comments|length }} comment</span>
+                {% else %}
+                <span class="border-white py-1 px-2">{{ comments|length }} comments</span>
+                {% endif %}
+                <!-- <span>
+                    {{ comments|length }}
+                </span> -->
+            </div>
+        </div>
+
+        <!-- Comment section -->
+        <h3 class="text-center">Comments</h3>
         {% if request.user.is_authenticated %}
-        <form action="{% url 'post_like' post.id %}" method="POST" class="d-inline">
-            {% csrf_token %}
-            {% if liked %}
-            <button type="submit" name="post_id" value="{{post.id}}"><i class="fas fa-heart"></i></button>
-            {% else %}
-            <button type="submit" name="post_id" value="{{post.id}}"><i class="far fa-heart"></i></button>
-            {% endif %}
-        </form>
+        <div class="my-4 comment-input">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="text" name="body" placeholder="Add comment...">
+            </form>
+        </div>
         {% else %}
-        <span class="text-secondary"><i class="far fa-heart"></i></span>
+        <div class="text-center my-5">
+            <span class="text-center border-white p-2">You need to log in or register to comment on or like a
+                post.</span>
+        </div>
         {% endif %}
-        <span class="text-secondary">{{ post.number_of_likes}}</span>
-        <span class="text-secondary"><i class="far fa-comments"></i>       
-            {{ comments|length }}
-        </span>   
-    </strong>
-</div>
-{% if request.user.is_authenticated %}
-<div>
-    <h3>Add a comment</h3>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="text" name="body" placeholder="Add comment...">
-    </form>
-</div>
-{% endif %}
-<div>
-    {% for comment in comments %}
-    <small>{{ comment.author }} | {{ comment.created | timesince }} ago</small>
-    <p>{{ comment.body }}</p>
-    {% if request.user == comment.author %}
-    <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button>Delete</button></a>
-    <!-- Pass in the post_id for the deleteComment view  -->
-    {% endif %}
-    {% endfor %}
+        <div>
+            {% for comment in comments %}
+            <div class="inline">
+                {% if comment.author.profile.profile_image.url != None %}
+                <img class="rounded-circle feed-img mr-2" src="{{post.author.profile.profile_image.url}}"
+                    alt="A profile picture of OP">
+                {% endif %}
+                <small>
+                    {{ post.topic }} - {{ comment.created | timesince }} ago
+                    {% if request.user == comment.author %}
+                    <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button
+                            class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
+                    <!-- Pass in the post_id for the deleteComment view  -->
+                    {% endif %}
+                </small>
+            </div>
+            <p class="my-3">{{ comment.body }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Profile section -->
+    <div class="col-md-3">
+        <div class="container d-flex justify-content-center align-items-center">
+            {% if request.user.is_authenticated %}
+            <div class=" card card-profile text-center p-3">
+                <div class="">
+                    <h3>My profile</h3>
+                </div>
+                {% if request.user.profile.profile_image.url != None %}
+                <img class="rounded-circle account-img mx-auto" src="{{request.user.profile.profile_image.url}}"
+                    alt="A profile picture of the user">
+                {% endif %}
+                <div class="media-body mt-3">
+                    <p class="">You are logged in as @{{request.user.username}}!</p>
+                    {% if request.user.profile.bio %}
+                    <p class="text-muted">{{request.user.profile.bio}}</p>
+                    {% endif %}
+                </div>
+                <a href="{% url 'edit_profile' request.user.id %}"><button
+                        class="btn btn-primary rounded-pill btn-profile">Add/change profile
+                        info</button></a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete my profile</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="card card-profile text-center p-3">
+            <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
+                to
+                your profile and add a bio text.</p>
+            <a href="{% url 'login' %}"><button
+                    class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>
+        </div>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}

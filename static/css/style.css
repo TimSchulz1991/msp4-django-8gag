@@ -16,6 +16,13 @@ body {
     border: 1px solid #fff;
 }
 
+hr {
+    background-color: #fff;
+    height: 1px;
+    border: none;
+    width: 80%;
+}
+
 /* Navbar */
 
 nav {
@@ -40,13 +47,6 @@ nav {
     width: 30px;
 }
 
-hr {
-    background-color: #fff;
-    height: 1px;
-    border: none;
-    width: 80%;
-}
-
 /* Profile section */
 
 .card-feed {
@@ -69,4 +69,16 @@ hr {
 
 .delete-link {
     font-size: 0.75rem;
+}
+
+/* Post page view */
+
+.like-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+.comment-input {
+    width: 70%;
 }
