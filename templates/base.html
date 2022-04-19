@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand text-light" href="{% url 'home' %}">8GAG</a>
-                <a href="{% url 'create_post' %}" class="nav-link d-inline-block d-lg-none"><button class="btn btn-primary"> <i
+                <a href="{% url 'create_post' %}" class="nav-link d-inline-block d-lg-none"><button class="btn btn-primary rounded-pill"> <i
                     class="fa-solid fa-plus"></i> Create new
                 post</button></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -45,7 +45,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <a href="{% url 'create_post' %}" class="nav-link d-none d-lg-inline-block"><button class="btn btn-primary"> <i
+                    <a href="{% url 'create_post' %}" class="nav-link d-none d-lg-inline-block"><button class="btn btn-primary rounded-pill"> <i
                                 class="fa-solid fa-plus"></i> Create new
                             post</button></a>
                 </div>

@@ -5,7 +5,7 @@
 
 <div class="row mt-3">
     <!-- Post section -->
-    <div class="col-md-9">
+    <div class="col-lg-9">
         <div class="mb-2">
             <a href="{% url 'home' %}" class="lead"><i class="fa-solid fa-angle-left"></i> Back</a>
         </div>
@@ -20,7 +20,7 @@
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
                     <a href="{% url 'post_delete' post.id %}"><button
-                            class="btn btn-warning rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
+                            class="btn btn-danger rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
                     {% endif %}
                 </small>
                 <div class="mt-2">
@@ -88,7 +88,7 @@
                     @{{ comment.author.username }} - {{ comment.created | timesince }} ago
                     {% if request.user == comment.author %}
                     <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button
-                            class="btn btn-primary rounded-pill btn-profile btn-sm ml-3">Delete</button></a>
+                            class="btn btn-danger rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
                     <!-- Pass in the post_id for the deleteComment view  -->
                     {% endif %}
                 </small>
@@ -100,7 +100,7 @@
     </div>
 
     <!-- Profile section -->
-    <div class="col-md-3">
+    <div class="col-lg-3 d-none d-lg-block">
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
             <div class=" card card-profile text-center p-3">

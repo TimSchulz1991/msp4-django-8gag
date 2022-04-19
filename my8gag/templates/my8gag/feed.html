@@ -41,11 +41,11 @@
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
                     <a href="{% url 'post_delete' post.id %}"><button
-                            class="btn btn-warning rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
+                            class="btn btn-danger rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
                     {% endif %}
                 </small>
                 <div class="mt-2">
-                    <span class="bg-secondary rounded-pill px-2">{{ post.topic }}</span>
+                    <span class="bg-secondary rounded-pill px-2 btn-profile">{{ post.topic }}</span>
                 </div>
             </div>
             <a href="{% url 'post_view' post.id %}">
@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col text-center mb-4">
                 <p>No more memes to see?</p>
-                <a href="{% url 'create_post' %}"><button class="btn btn-primary"> <i
+                <a href="{% url 'create_post' %}"><button class="btn btn-primary rounded-pill"> <i
                             class="fa-solid fa-plus"></i> Create new
                         post</button></a>
             </div>

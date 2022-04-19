@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <!-- Delete content section -->
-    <div class="col-md-9">
+    <div class="col-lg-8">
         {% if text_type == 'post' %}
         <form action="" method="POST">
             {% csrf_token %}
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Profile section -->
-    <div class="col-md-3">
+    <div class="col-lg-4 my-5 my-lg-0">
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
             <div class=" card card-profile text-center p-3">
