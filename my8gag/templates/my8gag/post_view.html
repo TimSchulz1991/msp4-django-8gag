@@ -7,7 +7,7 @@
     <!-- Post section -->
     <div class="col-lg-9">
         <div class="mb-2">
-            <a href="{% url 'home' %}" class="lead text-decoration-none"><i class="fa-solid fa-angle-left"></i> Back</a>
+            <button onclick="history.back()" class="btn btn-info btn-profile"><i class="fa-solid fa-angle-left"></i></button>
         </div>
         <!-- Meme section -->
         <div class="card card-feed p-2">
@@ -56,9 +56,6 @@
                 {% else %}
                 <span class="border-white py-1 px-2">{{ comments|length }} comments</span>
                 {% endif %}
-                <!-- <span>
-                    {{ comments|length }}
-                </span> -->
             </div>
         </div>
 

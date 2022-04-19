@@ -130,7 +130,7 @@ def deleteUser(request, pk):
 def deleteComment(request, pk):
     comment = Comment.objects.get(id=pk)
     post_id = request.GET.get('post_id')
-    # receiving the post_id from line 25 in post_view.html
+    # receiving the post_id from line 87 in post_view.html
   
     if request.user != comment.author:
         return redirect('home')
