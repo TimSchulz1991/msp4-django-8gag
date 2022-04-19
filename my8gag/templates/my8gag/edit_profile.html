@@ -9,6 +9,7 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4 ">My profile info</legend>
                 {{ form|crispy }}
+                <p class="mt-3 text-center text-info">To avoid errors and unexpected page behaviour, please only upload PNG or JPG files.</p>
                 <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete my profile</a>
             </fieldset>
             <div class="form-group">

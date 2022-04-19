@@ -70,7 +70,7 @@ def postLike(request, pk):
         post.likes.remove(request.user)
     else:
         post.likes.add(request.user)
-    
+
     return HttpResponseRedirect(reverse('post_view', args=[str(pk)]))
 
 
@@ -85,8 +85,12 @@ def createPost(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.save()
-            return redirect('home')
+            try:
+                post.save()
+                return redirect('home')
+            except:
+                messages.error(
+                    request, "Make sure to upload an image file (PNG/JPG)!")
 
     context = {'form': form}
     return render(request, 'my8gag/post_form.html', context)
@@ -130,8 +134,8 @@ def deleteUser(request, pk):
 def deleteComment(request, pk):
     comment = Comment.objects.get(id=pk)
     post_id = request.GET.get('post_id')
-    # receiving the post_id from line 87 in post_view.html
-  
+    # receiving the post_id from line 8 in post_view.html
+
     if request.user != comment.author:
         return redirect('home')
 
@@ -155,10 +159,14 @@ def editProfile(request, pk):
 
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
-        
+
         if form.is_valid():
-            form.save()
-            return redirect('home')
-    
+            try:
+                form.save()
+                return redirect('home')
+            except:
+                messages.error(
+                    request, "Make sure to upload an image file (PNG/JPG)!")
+
     context = {'profile': profile, 'form': form}
     return render(request, 'my8gag/edit_profile.html', context)

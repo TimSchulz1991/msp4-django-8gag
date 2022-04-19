@@ -31,7 +31,7 @@
     <div class="col-md-9 col-lg-6">
         {% if posts %}
         {% for post in posts %}
-        <div class="card card-feed p-2">
+        <div class="card card-feed p-2" id="{{post.id}}">
             <div class="inline">
                 {% if post.author.profile.profile_image.url != None %}
                 <img class="rounded-circle feed-img mr-2" src="{{post.author.profile.profile_image.url}}"

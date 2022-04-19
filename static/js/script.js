@@ -1,4 +1,4 @@
-console.log("Hello World")
+
 
 // Close the bootstrap alert
 
