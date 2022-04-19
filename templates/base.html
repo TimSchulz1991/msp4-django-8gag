@@ -45,6 +45,26 @@
                             <a class="nav-link text-light text-center" href="{% url 'login' %}">Login/Register</a>
                         </li>
                         {% endif %}
+                        <div class="d-md-none mt-5">
+                            <div class="text-center">
+                                <h4>Topics</h4>
+                                <hr>
+                                <div>
+                                    <a href="{% url 'home' %}" class="links lead text-primary text-decoration-none">All topics</a>
+                                </div>
+                                {% for topic in topics %}
+                                <div>
+                                    <a href="{% url 'home' %}?q={{topic.name}}" class="links text-decoration-none">{{ topic.name }}</a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="my-3">
+                                <form action="{% url 'home' %}" method="GET">
+                                    {% csrf_token %}
+                                    <input class="form-control w-75 mx-auto search-field" type="text" name="q" placeholder="Search for memes...">
+                                </form>
+                            </div>
+                        </div>
                     </ul>
                     <a href="{% url 'create_post' %}" class="nav-link d-none d-lg-inline-block"><button class="btn btn-primary rounded-pill"> <i
                                 class="fa-solid fa-plus"></i> Create new
