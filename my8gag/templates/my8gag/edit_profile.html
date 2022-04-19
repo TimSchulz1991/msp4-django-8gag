@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="row">
-    <div class='col-lg-8'>
+    <div class="col-lg-8">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">My profile info</legend>
+                <legend class="border-bottom mb-4 ">My profile info</legend>
                 {{ form|crispy }}
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete my profile</a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete my profile</a>
             </fieldset>
             <div class="form-group">
                 <button type="submit" class="btn btn-success mr-3">Confirm</button>

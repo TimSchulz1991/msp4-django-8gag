@@ -7,7 +7,7 @@
     <!-- Post section -->
     <div class="col-lg-9">
         <div class="mb-2">
-            <a href="{% url 'home' %}" class="lead"><i class="fa-solid fa-angle-left"></i> Back</a>
+            <a href="{% url 'home' %}" class="lead text-decoration-none"><i class="fa-solid fa-angle-left"></i> Back</a>
         </div>
         <!-- Meme section -->
         <div class="card card-feed p-2">
@@ -119,7 +119,7 @@
                 </div>
                 <a href="{% url 'edit_profile' request.user.id %}"><button
                         class="btn btn-primary rounded-pill btn-profile">Edit profile</button></a>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete</a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete</a>
             </div>
         </div>
         {% else %}

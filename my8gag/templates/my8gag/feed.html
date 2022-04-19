@@ -10,11 +10,11 @@
                 <h3>Topics</h3>
                 <hr>
                 <div>
-                    <a href="{% url 'home' %}" class="links lead text-primary">All topics</a>
+                    <a href="{% url 'home' %}" class="links lead text-primary text-decoration-none">All topics</a>
                 </div>
                 {% for topic in topics %}
                 <div>
-                    <a href="{% url 'home' %}?q={{topic.name}}" class="links">{{ topic.name }}</a>
+                    <a href="{% url 'home' %}?q={{topic.name}}" class="links text-decoration-none">{{ topic.name }}</a>
                 </div>
                 {% endfor %}
             </div>
@@ -100,7 +100,7 @@
                 </div>
                 <a href="{% url 'edit_profile' request.user.id %}"><button
                         class="btn btn-primary rounded-pill btn-profile">Edit profile</button></a>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2">Delete</a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete</a>
             </div>
         </div>
         {% else %}
