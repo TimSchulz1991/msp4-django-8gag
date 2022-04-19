@@ -6,7 +6,6 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ('topic', 'title', 'image',)
-        # fields = '__all__'
 
 
 class ProfileForm(ModelForm):

@@ -1,5 +1,9 @@
 /* General Settings */
 
+* {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 body {
     background: #111827;
 }
@@ -28,6 +32,10 @@ hr {
 
 nav {
     background: black;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
 }
 
 .fa-bars {

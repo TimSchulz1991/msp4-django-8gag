@@ -87,6 +87,8 @@ def createPost(request):
             post.author = request.user
             try:
                 post.save()
+                messages.success(
+                    request, 'Your post was created successfully!')
                 return redirect('home')
             except:
                 messages.error(

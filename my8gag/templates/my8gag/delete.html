@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="row">
-    <!-- Delete content section -->
+
+    <!-- Delete post section -->
     <div class="col-lg-8">
         {% if text_type == 'post' %}
         <form action="" method="POST">
@@ -17,6 +18,8 @@
             <h2 class="my-3">{{ post.title }}</h2>
             <img src="{{ post.image.url }}" alt="A funny Meme" class="mb-2">
         </div>
+
+        <!-- Delete user section -->
         {% elif text_type == 'user' %}
         <form action="" method="POST">
             {% csrf_token %}
@@ -26,6 +29,8 @@
             <button type="submit" class="btn btn-success mr-3">Confirm</button>
             <a href="{{ request.META.HTTP_REFERER }}" class="text-decoration-none">Nope, keep it!</a>
         </form>
+
+        <!-- Delete comment section -->
         {% else %}
         <form action="" method="POST">
             {% csrf_token %}
