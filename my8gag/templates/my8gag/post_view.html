@@ -20,7 +20,7 @@
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
                     <a href="{% url 'post_delete' post.id %}"><button
-                            class="btn btn-danger rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
+                            class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
                     {% endif %}
                 </small>
                 <div class="mt-2">
@@ -88,7 +88,7 @@
                     @{{ comment.author.username }} - {{ comment.created | timesince }} ago
                     {% if request.user == comment.author %}
                     <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button
-                            class="btn btn-danger rounded-pill btn-profile py-0 px-2 ml-2">Delete</button></a>
+                            class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
                     <!-- Pass in the post_id for the deleteComment view  -->
                     {% endif %}
                 </small>
@@ -118,7 +118,7 @@
                     {% endif %}
                 </div>
                 <a href="{% url 'edit_profile' request.user.id %}"><button
-                        class="btn btn-primary rounded-pill btn-profile">Edit profile</button></a>
+                        class="btn btn-info btn-profile">Edit profile</button></a>
                 <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete</a>
             </div>
         </div>

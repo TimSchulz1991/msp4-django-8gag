@@ -33,15 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         {% if request.user.is_authenticated %}
+                        <span class="d-lg-none text-center lead border-white mt-4">You are logged in as @{{request.user.username}}</span>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{% url 'edit_profile' request.user.id %}">My Profile</a>
+                            <a class="nav-link text-light text-center mt-3 mt-lg-0" href="{% url 'edit_profile' request.user.id %}">My Profile</a> 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{% url 'logout' %}">Logout</a>
+                            <a class="nav-link text-light text-center" href="{% url 'logout' %}">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{% url 'login' %}">Login/Register</a>
+                            <a class="nav-link text-light text-center" href="{% url 'login' %}">Login/Register</a>
                         </li>
                         {% endif %}
                     </ul>
