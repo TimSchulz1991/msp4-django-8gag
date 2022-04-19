@@ -7,7 +7,8 @@
     <!-- Post section -->
     <div class="col-lg-9">
         <div class="mb-2">
-            <a href="{% url 'home' %}#{{post.id}}"><button class="btn btn-info btn-profile"><i class="fa-solid fa-angle-left"></i></button></a>
+            <a href="{% url 'home' %}#{{post.id}}" aria-label="Go back to the main feed"><button
+                    class="btn btn-info btn-profile"><i class="fa-solid fa-angle-left"></i></button></a>
         </div>
 
         <!-- Meme section -->
@@ -20,7 +21,7 @@
                 <small>
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
-                    <a href="{% url 'post_delete' post.id %}"><button
+                    <a href="{% url 'post_delete' post.id %}" aria-label="Delete your post here"><button
                             class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
                     {% endif %}
                 </small>
@@ -38,18 +39,18 @@
                     <form action="{% url 'post_like' post.id %}" method="POST" class="d-inline">
                         {% csrf_token %}
                         {% if liked %}
-                        <button type="submit" name="post_id" value="{{post.id}}" class="like-btn text-primary"><i
-                                class="fa-solid fa-arrow-up"></i><span
+                        <button type="submit" name="post_id" value="{{post.id}}" class="like-btn text-primary"
+                            aria-label="Click here to unlike a post"><i class="fa-solid fa-arrow-up"></i><span
                                 class="ml-2">{{ post.number_of_likes}}</span></button>
                         {% else %}
-                        <button type="submit" name="post_id" value="{{post.id}}" class="like-btn"><i
-                                class="fa-solid fa-arrow-up"></i><span
+                        <button type="submit" name="post_id" value="{{post.id}}" class="like-btn"
+                            aria-label="Click here to like a post"><i class="fa-solid fa-arrow-up"></i><span
                                 class="ml-2">{{ post.number_of_likes}}</span></button>
                         {% endif %}
                     </form>
                     {% else %}
                     <span><i class="fa-solid fa-arrow-up"></i></span>
-                    <span>{{ post.number_of_likes}}</span>
+                    <span aria-label="The number of likes">{{ post.number_of_likes}}</span>
                     {% endif %}
                 </div>
                 {% if comments|length == 1 %}
@@ -66,7 +67,8 @@
         <div class="my-4 comment-input">
             <form action="" method="POST">
                 {% csrf_token %}
-                <input class="form-control" type="text" name="body" placeholder="Add comment...">
+                <input class="form-control" type="text" name="body" placeholder="Add comment..."
+                    aria-label="Add a comment here">
             </form>
         </div>
         {% else %}
@@ -85,7 +87,8 @@
                 <small>
                     @{{ comment.author.username }} - {{ comment.created | timesince }} ago
                     {% if request.user == comment.author %}
-                    <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"><button
+                    <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"
+                        aria-label="Delete your comment here"><button
                             class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
                     <!-- Pass in the post_id for the deleteComment view  -->
                     {% endif %}
@@ -115,9 +118,10 @@
                     <p class="text-muted">{{request.user.profile.bio}}</p>
                     {% endif %}
                 </div>
-                <a href="{% url 'edit_profile' request.user.id %}"><button
-                        class="btn btn-info btn-profile">Edit profile</button></a>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete</a>
+                <a href="{% url 'edit_profile' request.user.id %}"><button class="btn btn-info btn-profile"
+                        aria-label="Edit your profile here">Edit profile</button></a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none"
+                    aria-label="Delete your profile here">Delete</a>
             </div>
         </div>
         {% else %}
@@ -125,8 +129,8 @@
             <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
                 to
                 your profile and add a bio text.</p>
-            <a href="{% url 'login' %}"><button
-                    class="btn btn-info btn-profile">Login/Register</button></a>
+            <a href="{% url 'login' %}"><button class="btn btn-info btn-profile"
+                    aria-label="Log in or register as a user here">Login/Register</button></a>
         </div>
         {% endif %}
     </div>

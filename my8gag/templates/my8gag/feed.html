@@ -10,11 +10,13 @@
                 <h3>Topics</h3>
                 <hr>
                 <div>
-                    <a href="{% url 'home' %}" class="links lead text-primary text-decoration-none">All topics</a>
+                    <a href="{% url 'home' %}" class="links lead text-primary text-decoration-none"
+                        aria-label="Browse all memes here"> All topics</a>
                 </div>
                 {% for topic in topics %}
                 <div>
-                    <a href="{% url 'home' %}?q={{topic.name}}" class="links text-decoration-none">{{ topic.name }}</a>
+                    <a href="{% url 'home' %}?q={{topic.name}}" class="links text-decoration-none"
+                        aria-label="Browse memes in the category {{topic.name}}">{{ topic.name }}</a>
                 </div>
                 {% endfor %}
             </div>
@@ -40,8 +42,8 @@
                 <small>
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
-                    <a href="{% url 'post_delete' post.id %}"><button
-                            class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
+                    <a href="{% url 'post_delete' post.id %}"><button class="btn btn-danger btn-profile py-0 px-2 ml-2"
+                            aria-label="Delete your own post">Delete</button></a>
                     {% endif %}
                 </small>
                 <div class="mt-2">
@@ -53,7 +55,8 @@
             </a>
             <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1">
             <div>
-                <span class="border-white py-1 px-2"><i class="fa-solid fa-arrow-up"></i>
+                <span class="border-white py-1 px-2" aria-label="The number of likes for this post"><i
+                        class="fa-solid fa-arrow-up"></i>
                     {{ post.number_of_likes }} </span>
                 {% if post.num_comments == 1 %}
                 <span class="border-white py-1 px-2">{{ post.num_comments }} comment</span>
@@ -68,7 +71,7 @@
             <div class="col text-center mb-4">
                 <p>No more memes to see?</p>
                 <a href="{% url 'create_post' %}"><button class="btn btn-primary rounded-pill"> <i
-                            class="fa-solid fa-plus"></i> Create new
+                            class="fa-solid fa-plus" aria-label="Create a new meme here"></i> Create new
                         post</button></a>
             </div>
         </div>
@@ -98,9 +101,11 @@
                     <p class="text-muted">{{request.user.profile.bio}}</p>
                     {% endif %}
                 </div>
-                <a href="{% url 'edit_profile' request.user.id %}"><button
-                        class="btn btn-info btn-profile">Edit profile</button></a>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete</a>
+                <a href="{% url 'edit_profile' request.user.id %}"
+                    aria-label="Add or edit your profile information here"><button class="btn btn-info btn-profile">Edit
+                        profile</button></a>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none"
+                    aria-label="Delete your user account here">Delete</a>
             </div>
         </div>
         {% else %}
@@ -109,8 +114,8 @@
                 picture
                 to
                 your profile and add a bio text.</p>
-            <a href="{% url 'login' %}"><button
-                    class="btn btn-info btn-profile">Login/Register</button></a>
+            <a href="{% url 'login' %}"><button class="btn btn-info btn-profile"
+                    aria-label="Log in or register an account here">Login/Register</button></a>
         </div>
         {% endif %}
 

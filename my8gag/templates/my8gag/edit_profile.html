@@ -9,17 +9,20 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4 ">My profile info</legend>
                 {{ form|crispy }}
-                <p class="mt-3 text-center text-info">To avoid errors and unexpected page behaviour, please only upload PNG or JPG files.</p>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none">Delete my profile</a>
+                <p class="mt-3 text-center text-info">To avoid errors and unexpected page behaviour, please only upload
+                    PNG or JPG files.</p>
+                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none"
+                    aria-label="Delete your profile here">Delete my profile</a>
             </fieldset>
             <div class="form-group">
-                <button type="submit" class="btn btn-success mr-3">Confirm</button>
+                <button type="submit" class="btn btn-success mr-3"
+                    aria-label="Confirm your recent changes to your profile">Confirm</button>
             </div>
         </form>
     </div>
     <div class="col-lg-4 my-3 my-lg-0">
         <div class="container d-flex justify-content-center align-items-center">
-        {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
             <div class=" card card-profile text-center p-3">
                 <div class="">
                     <h3>My profile</h3>
@@ -41,11 +44,11 @@
             <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
                 to
                 your profile and add a bio text.</p>
-            <a href="{% url 'login' %}"><button
+            <a href="{% url 'login' %}" aria-label="Log in or register a new user account here"><button
                     class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>
         </div>
         {% endif %}
     </div>
-    </div>
+</div>
 </div>
 {% endblock %}
