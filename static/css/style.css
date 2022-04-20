@@ -56,6 +56,11 @@ nav {
     width: 30px;
 }
 
+.arrow {
+    font-size: 70%;
+    color: #0275d8;
+}
+
 .image {
     width: 100%;
     height: auto;

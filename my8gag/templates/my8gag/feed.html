@@ -51,9 +51,11 @@
                 </div>
             </div>
             <a href="{% url 'post_view' post.id %}">
-                <h2 class="my-3 links">{{ post.title }}</h2>
+                <h2 class="my-3 links">{{ post.title }} <span class="arrow"><i class="fas fa-angle-double-right"></i></span></h2>
             </a>
             <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1 image">
+
+            <!-- Like and comment boxes -->
             <div>
                 <span class="border-white py-1 px-2" aria-label="The number of likes for this post"><i
                         class="fa-solid fa-arrow-up"></i>
@@ -67,6 +69,8 @@
         </div>
         <hr>
         {% endfor %}
+
+        <!-- No more memes -->
         <div class="row">
             <div class="col text-center mb-4">
                 <p>No more memes to see?</p>
@@ -75,6 +79,8 @@
                         post</button></a>
             </div>
         </div>
+
+        <!-- No memes posted -->
         {% else %}
         <div>
             <p class="text-center">No Memes to see here 😒</p>

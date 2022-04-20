@@ -41,16 +41,16 @@
                         {% if liked %}
                         <button type="submit" name="post_id" value="{{post.id}}" class="like-btn text-primary"
                             aria-label="Click here to unlike a post"><i class="fa-solid fa-arrow-up"></i><span
-                                class="ml-2">{{ post.number_of_likes}}</span></button>
+                                class="ml-1">{{ post.number_of_likes}}</span></button>
                         {% else %}
                         <button type="submit" name="post_id" value="{{post.id}}" class="like-btn"
                             aria-label="Click here to like a post"><i class="fa-solid fa-arrow-up"></i><span
-                                class="ml-2">{{ post.number_of_likes}}</span></button>
+                                class="ml-1">{{ post.number_of_likes}}</span></button>
                         {% endif %}
                     </form>
                     {% else %}
                     <span><i class="fa-solid fa-arrow-up"></i></span>
-                    <span aria-label="The number of likes">{{ post.number_of_likes}}</span>
+                    <span aria-label="The number of likes" class="ml-1">{{ post.number_of_likes}}</span>
                     {% endif %}
                 </div>
                 {% if comments|length == 1 %}
@@ -66,10 +66,11 @@
         {% if request.user.is_authenticated %}
         <div class="mb-5 mt-3 comment-input">
             <form action="" method="POST">
-                {% csrf_token %}    
-                    <input class="form-control" type="text" name="body" placeholder="Add comment..."
-                        aria-label="Add a comment here">
-                    <button type="submit" class="mt-2 btn btn-primary rounded-circle"><i class="fa-solid fa-arrow-right"></i></button>
+                {% csrf_token %}
+                <input class="form-control" type="text" name="body" placeholder="Add comment..."
+                    aria-label="Add a comment here">
+                <button type="submit" class="mt-2 btn btn-primary rounded-circle"><i class="fa-solid fa-arrow-right"
+                        aria-label="Post your comment here"></i></button>
             </form>
         </div>
         {% else %}
