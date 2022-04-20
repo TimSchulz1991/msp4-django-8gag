@@ -12,7 +12,7 @@
                 <legend class="border-bottom mb-4">Are you sure you want to delete your post (see below)?</legend>
             </fieldset>
             <button type="submit" class="btn btn-success mr-3">Confirm</button>
-            <a href="{{ request.META.HTTP_REFERER }}" class="text-decoration-none">Nope, keep it!</a>
+            <a href="{% url 'home' %}#{{post.id}}" class="text-decoration-none">Nope, keep it!</a>
         </form>
         <div class="card card-feed">
             <h2 class="my-3">{{ post.title }}</h2>
