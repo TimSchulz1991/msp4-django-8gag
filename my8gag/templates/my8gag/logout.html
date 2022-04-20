@@ -3,10 +3,12 @@
 {% block content %}
 <h2>You logged out successfully! </h2>
 <div class="border-top pt-3">
-    <a href="{% url 'home' %}" class="text-decoration-none"><h4>To the feed</h4></a>
+    <a href="{% url 'home' %}" class="text-decoration-none" aria-label="Back to the mein feed">
+        <h4>To the feed</h4>
+    </a>
     <br>
     <small class="text-muted">
-        <a href="{% url 'login' %}" class="text-decoration-none">Log in again?</a>
+        <a href="{% url 'login' %}" class="text-decoration-none" aria-label="Back to the login page">Log in again?</a>
     </small>
 </div>
 

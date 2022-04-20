@@ -4,7 +4,7 @@
 
 <!-- Topics section -->
 <div class="row mt-3">
-    <div class="col-md-3 d-none d-md-block">
+    <aside class="col-md-3 d-none d-md-block">
         <div class="position-fixed">
             <div class="text-center">
                 <h3>Topics</h3>
@@ -27,10 +27,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </aside>
 
     <!-- Feed section -->
-    <div class="col-md-9 col-lg-6">
+    <main class="col-md-9 col-lg-6">
         {% if posts %}
         {% for post in posts %}
         <div class="card card-feed p-2" id="{{post.id}}">
@@ -53,7 +53,7 @@
             <a href="{% url 'post_view' post.id %}">
                 <h2 class="my-3 links">{{ post.title }}</h2>
             </a>
-            <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1">
+            <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1 image">
             <div>
                 <span class="border-white py-1 px-2" aria-label="The number of likes for this post"><i
                         class="fa-solid fa-arrow-up"></i>
@@ -80,10 +80,10 @@
             <p class="text-center">No Memes to see here 😒</p>
         </div>
         {% endif %}
-    </div>
+    </main>
 
     <!-- Profile section -->
-    <div class="col-lg-3 d-none d-lg-block">
+    <aside class="col-lg-3 d-none d-lg-block">
 
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
@@ -119,7 +119,7 @@
         </div>
         {% endif %}
 
-    </div>
+    </aside>
 </div>
 
 {% endblock %}

@@ -4,7 +4,7 @@
 <div class="row">
 
     <!-- Delete post section -->
-    <div class="col-lg-8">
+    <main class="col-lg-8">
         {% if text_type == 'post' %}
         <form action="" method="POST">
             {% csrf_token %}
@@ -16,7 +16,7 @@
         </form>
         <div class="card card-feed">
             <h2 class="my-3">{{ post.title }}</h2>
-            <img src="{{ post.image.url }}" alt="A funny Meme" class="mb-2">
+            <img src="{{ post.image.url }}" alt="A funny Meme" class="mb-2 image">
         </div>
 
         <!-- Delete user section -->
@@ -44,10 +44,10 @@
             <h3>{{ comment.body }}</h3>
         </div>
         {% endif %}
-    </div>
+    </main>
 
     <!-- Profile section -->
-    <div class="col-lg-4 my-5 my-lg-0">
+    <aside class="col-lg-4 my-5 my-lg-0">
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
             <div class=" card card-profile text-center p-3">
@@ -75,6 +75,6 @@
                     class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>
         </div>
         {% endif %}
-    </div>
+    </aside>
 </div>
 {% endblock %}

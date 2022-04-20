@@ -22,6 +22,8 @@
 
 <body class='text-light d-flex flex-column min-vh-100'>
     <header class="site-header">
+
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand text-light" href="{% url 'home' %}" aria-label="Back to the homepage">8GAG</a>
@@ -66,6 +68,7 @@
                                 </div>
                                 {% for topic in topics %}
                                 <div>
+                                    <!-- Variable q is used in views in home function -->
                                     <a href="{% url 'home' %}?q={{topic.name}}" class="links text-decoration-none"
                                         aria-label="Browse memes in the category {{topic.name}}">{{ topic.name }}</a>
                                 </div>
@@ -104,13 +107,13 @@
     </div>
 
     <!-- Main content -->
-    <main role="main" class="container pt-2 my-2">
+    <div role="main" class="container pt-2 my-2">
         <div class="row">
             <div class="col">
                 {% block content %}{% endblock %}
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="py-3 text-center mt-auto">

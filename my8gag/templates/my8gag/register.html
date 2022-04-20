@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class='content-section'>
+<main class='content-section'>
     <form action="" method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -11,14 +11,14 @@
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button type="submit" class="btn btn-outline-info">Register</button>
+            <button type="submit" class="btn btn-outline-info" aria-label="Register for a new account here">Register</button>
         </div>
     </form>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already Have An Account? <a class="ml-2 text-decoration-none" href="{% url 'login' %}">Sign In</a>
+            Already Have An Account? <a class="ml-2 text-decoration-none" href="{% url 'login' %}" aria-label="Sign in to your existing account here">Sign In</a>
         </small>
     </div>
-</div>
+</main>
 
 {% endblock %}

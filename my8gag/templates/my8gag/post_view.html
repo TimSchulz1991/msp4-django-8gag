@@ -5,7 +5,7 @@
 
 <div class="row mt-3">
     <!-- Post section -->
-    <div class="col-lg-9">
+    <main class="col-lg-9">
         <div class="mb-2">
             <a href="{% url 'home' %}#{{post.id}}" aria-label="Go back to the main feed"><button
                     class="btn btn-info btn-profile"><i class="fa-solid fa-angle-left"></i></button></a>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <h2 class="my-3">{{ post.title }}</h2>
-            <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1">
+            <img src="{{ post.image.url }}" alt="A funny meme" class="mb-1 image">
 
             <!-- Like section -->
             <div class="d-flex">
@@ -62,18 +62,19 @@
         </div>
 
         <!-- Comment section -->
-        <h3 class="text-center">Comments</h3>
+        <h3 class="text-center mt-3">Comments</h3>
         {% if request.user.is_authenticated %}
-        <div class="my-4 comment-input">
+        <div class="mb-5 mt-3 comment-input">
             <form action="" method="POST">
-                {% csrf_token %}
-                <input class="form-control" type="text" name="body" placeholder="Add comment..."
-                    aria-label="Add a comment here">
+                {% csrf_token %}    
+                    <input class="form-control" type="text" name="body" placeholder="Add comment..."
+                        aria-label="Add a comment here">
+                    <button type="submit" class="mt-2 btn btn-primary rounded-circle"><i class="fa-solid fa-arrow-right"></i></button>
             </form>
         </div>
         {% else %}
         <div class="text-center my-5">
-            <span class="text-center border-white p-2">You need to log in or register to comment on or like a
+            <span class="text-center text-info p-2">You need to log in or register to comment on or like a
                 post.</span>
         </div>
         {% endif %}
@@ -98,10 +99,10 @@
             <hr>
             {% endfor %}
         </div>
-    </div>
+    </main>
 
     <!-- Profile section -->
-    <div class="col-lg-3 d-none d-lg-block">
+    <aside class="col-lg-3 d-none d-lg-block">
         <div class="container d-flex justify-content-center align-items-center">
             {% if request.user.is_authenticated %}
             <div class=" card card-profile text-center p-3">
@@ -133,7 +134,7 @@
                     aria-label="Log in or register as a user here">Login/Register</button></a>
         </div>
         {% endif %}
-    </div>
+    </aside>
 </div>
 
 {% endblock %}
