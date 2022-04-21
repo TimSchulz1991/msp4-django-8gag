@@ -44,6 +44,8 @@ def postView(request, pk):
     post = Post.objects.get(id=pk)
     comments = post.comment_set.all().order_by('-created')
     # to query all comments from the selected post
+    topics = Topic.objects.all()
+
     liked = False
     if post.likes.filter(id=request.user.id).exists():
         liked = True
@@ -59,7 +61,7 @@ def postView(request, pk):
         )
         return redirect('post_view', pk=post.id)
 
-    context = {'post': post, 'comments': comments, 'liked': liked}
+    context = {'post': post, 'comments': comments, 'topics': topics, 'liked': liked}
     return render(request, 'my8gag/post_view.html', context)
 
 
@@ -101,7 +103,10 @@ def createPost(request):
 @login_required(login_url='login')
 def deletePost(request, pk):
     text_type = 'post'
-    post = Post.objects.get(id=pk)
+    try:
+        post = Post.objects.get(id=pk)
+    except Post.DoesNotExist:
+        return redirect('home')
 
     if request.user != post.author:
         return redirect('home')
@@ -120,7 +125,7 @@ def deleteUser(request, pk):
     text_type = 'user'
     user = User.objects.get(id=pk)
 
-    if not request.user:
+    if user != request.user:
         return redirect('home')
 
     if request.method == "POST":
@@ -134,8 +139,12 @@ def deleteUser(request, pk):
 
 @login_required(login_url='login')
 def deleteComment(request, pk):
-    comment = Comment.objects.get(id=pk)
     post_id = request.GET.get('post_id')
+    try:
+        comment = Comment.objects.get(id=pk)
+    except Comment.DoesNotExist:
+        return redirect('post_view', pk=post_id)
+
     # receiving the post_id from line 8 in post_view.html
 
     if request.user != comment.author:
