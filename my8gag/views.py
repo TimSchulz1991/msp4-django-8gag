@@ -54,14 +54,24 @@ def postView(request, pk):
         liked = False
         if post.likes.filter(id=request.user.id).exists():
             liked = True
-        comment = Comment.objects.create(
-            author=request.user,
-            post=post,
-            body=request.POST.get('body')
-        )
+        try:
+            if request.POST.get('body') == '':
+                messages.error(
+                    request, "Make sure to write something!")
+            else:
+                comment = Comment.objects.create(
+                    author=request.user,
+                    post=post,
+                    body=request.POST.get('body')
+                )
+                messages.success(
+                        request, 'Your comment was created successfully!')
+        except: 
+            pass
         return redirect('post_view', pk=post.id)
 
-    context = {'post': post, 'comments': comments, 'topics': topics, 'liked': liked}
+    context = {'post': post, 'comments': comments,
+               'topics': topics, 'liked': liked}
     return render(request, 'my8gag/post_view.html', context)
 
 
@@ -174,6 +184,8 @@ def editProfile(request, pk):
         if form.is_valid():
             try:
                 form.save()
+                messages.success(
+                    request, 'Your profile was edited successfully!')
                 return redirect('home')
             except:
                 messages.error(
