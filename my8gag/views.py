@@ -67,7 +67,7 @@ def postView(request, pk):
                 messages.success(
                         request, 'Your comment was created successfully!')
         except: 
-            pass
+            return redirect('post_view', pk=post.id)
         return redirect('post_view', pk=post.id)
 
     context = {'post': post, 'comments': comments,
