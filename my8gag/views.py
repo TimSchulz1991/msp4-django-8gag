@@ -94,7 +94,9 @@ def createPost(request):
         form = PostForm(request.POST, request.FILES)
         # request.FILES necessary so that file is submitted
         # also required to add enctype to the form
+        print(form.errors)
         if form.is_valid():
+
             post = form.save(commit=False)
             post.author = request.user
             try:

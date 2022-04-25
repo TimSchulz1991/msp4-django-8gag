@@ -9,7 +9,8 @@ class TestPostForm(TestCase):
         self.assertFalse(post.is_valid())
 
     def test_form_without_image_is_invalid(self):
-        post = PostForm({'topic': 'Funny', 'title': 'Hello World', 'image': ''})
+        post = PostForm(
+            {'topic': 'Funny', 'title': 'Hello World', 'image': ''})
         self.assertFalse(post.is_valid())
 
     def test_fields_are_explicit_in_form_meta_class(self):
