@@ -76,7 +76,7 @@ class TestView(TestCase):
         self.assertEqual(len(posts), 1)
         self.assertEqual(posts[0].title, 'Hej')
 
-    def test_logged_in_user_can_delete_own_post(self):
+    def test_logged_in_user_can_delete_post(self):
 
         # log user in
         logged_in = self.client.login(

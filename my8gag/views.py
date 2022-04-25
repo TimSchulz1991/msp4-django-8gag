@@ -190,7 +190,7 @@ def deleteComment(request, pk):
     except Comment.DoesNotExist:
         return redirect('post_view', pk=post_id)
 
-    # receiving the post_id from line 8 in post_view.html
+    # receiving the post_id from line 95 in post_view.html
 
     if request.user != comment.author:
         return redirect('home')
