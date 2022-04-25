@@ -11,6 +11,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def registerView(request):
+    """
+    This view is shown when a page visitor wants to register
+    a new account. Afterward a successful registration,
+    the new user gets logged in automatically.
+    """
     form = UserCreationForm()
 
     if request.method == "POST":
@@ -28,11 +33,17 @@ def registerView(request):
 
 
 def home(request):
+    """
+    This view is the main meme page of the project, in which a visitor 
+    can look at memes, filter for memes and see their profile information.
+    """
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     posts = Post.objects.filter(
         Q(topic__name__icontains=q) |
         Q(title__icontains=q)
     ).annotate(num_comments=Count('comment')).order_by('-created')
+    # filter all posts by the searched word or topic and also count
+    # the number of comments on each post
 
     topics = Topic.objects.all()
 
@@ -41,6 +52,10 @@ def home(request):
 
 
 def postView(request, pk):
+    """
+    This is the view for each individual post when clicked. Here the visitor
+    can see comments and the logged-in user can like and comment.
+    """
     post = Post.objects.get(id=pk)
     comments = post.comment_set.all().order_by('-created')
     # to query all comments from the selected post
@@ -66,7 +81,8 @@ def postView(request, pk):
                 )
                 messages.success(
                         request, 'Your comment was created successfully!')
-        except: 
+        except Exception as E:
+            print(E)
             return redirect('post_view', pk=post.id)
         return redirect('post_view', pk=post.id)
 
@@ -76,6 +92,10 @@ def postView(request, pk):
 
 
 def postLike(request, pk):
+    """
+    Function that takes care of adding/removing a user like.
+    Authentication is taken care of in post_view.html.
+    """
     post = Post.objects.get(id=pk)
 
     if post.likes.filter(id=request.user.id).exists():
@@ -88,13 +108,16 @@ def postLike(request, pk):
 
 @login_required(login_url='login')
 def createPost(request):
+    """
+    This view (for logged-in users) lets users create a new post.
+    """
     form = PostForm()
 
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         # request.FILES necessary so that file is submitted
         # also required to add enctype to the form
-        print(form.errors)
+        
         if form.is_valid():
 
             post = form.save(commit=False)
@@ -104,7 +127,8 @@ def createPost(request):
                 messages.success(
                     request, 'Your post was created successfully!')
                 return redirect('home')
-            except:
+            except Exception as E:
+                print(E)
                 messages.error(
                     request, "Make sure to upload an image file (PNG/JPG)!")
 
@@ -114,6 +138,9 @@ def createPost(request):
 
 @login_required(login_url='login')
 def deletePost(request, pk):
+    """
+    This view (for logged-in users) lets users delete their own posts.
+    """
     text_type = 'post'
     try:
         post = Post.objects.get(id=pk)
@@ -134,6 +161,9 @@ def deletePost(request, pk):
 
 @login_required(login_url='login')
 def deleteUser(request, pk):
+    """
+    This view (for logged-in users) lets users delete their own profile.
+    """
     text_type = 'user'
     user = User.objects.get(id=pk)
 
@@ -151,6 +181,9 @@ def deleteUser(request, pk):
 
 @login_required(login_url='login')
 def deleteComment(request, pk):
+    """
+    This view (for logged-in users) lets users delete their own comments.
+    """
     post_id = request.GET.get('post_id')
     try:
         comment = Comment.objects.get(id=pk)
@@ -173,6 +206,9 @@ def deleteComment(request, pk):
 
 @login_required(login_url='login')
 def editProfile(request, pk):
+    """
+    This view (for logged-in users) lets users edit their own profile.
+    """
     profile = Profile.objects.get(user_id=pk)
     # it is important to get the user_id, not id of the profile table
     form = ProfileForm(instance=profile)
@@ -189,7 +225,8 @@ def editProfile(request, pk):
                 messages.success(
                     request, 'Your profile was edited successfully!')
                 return redirect('home')
-            except:
+            except Exception as E:
+                print(E)
                 messages.error(
                     request, "Make sure to upload an image file (PNG/JPG)!")
 

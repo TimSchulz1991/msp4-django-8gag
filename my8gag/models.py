@@ -5,6 +5,7 @@ from cloudinary.models import CloudinaryField
 
 # connected to the User model via the signals.py file
 class Profile(models.Model):
+    """ Profile Model to extend the user model """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True)
     profile_image = CloudinaryField(
@@ -15,6 +16,7 @@ class Profile(models.Model):
 
 
 class Topic(models.Model):
+    """  Topic Model so every post has a topic """
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -22,6 +24,7 @@ class Topic(models.Model):
 
 
 class Post(models.Model):
+    """  Post Model for each post that is created """
     title = models.CharField(max_length=200)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     image = CloudinaryField('image')
@@ -38,6 +41,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """ Comment Model to comment on posts """
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     body = models.TextField()
