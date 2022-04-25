@@ -9,7 +9,6 @@ from django.contrib.auth import get_user_model
 
 class TestView(TestCase):
 
-
     def setUp(self):
         self.topic = Topic.objects.create(name="Funny")
         User = get_user_model()
@@ -28,17 +27,14 @@ class TestView(TestCase):
             }
         ]
 
-
     def tearDown(self):
         del self.topic
         del self.users
-
 
     def test_that_feed_loads(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'my8gag/feed.html')
-
 
     def test_that_post_view_loads(self):
         post = Post.objects.create(
@@ -49,9 +45,9 @@ class TestView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'my8gag/post_view.html')
 
-
     def test_logged_in_user_can_add_a_post(self):
-        # tutor service of CodeInstitute helped with this test
+        # tutor service of CodeInstitute helped with
+        # logging in the user and with uploading the image
 
         # login
         logged_in = self.client.login(
@@ -77,16 +73,26 @@ class TestView(TestCase):
 
         # check that new post has been made
         posts = Post.objects.filter(title='Hej')
-
-        # assets that the newly created post is the right one
         self.assertEqual(len(posts), 1)
         self.assertEqual(posts[0].title, 'Hej')
 
-        # def test_can_delete_post(self):
-        #     self.client.login(username="testuser", password="abcdef1")
-        #     post = Post.objects.create(
-        #         topic=self.topic, title='Hej', image='abc.png', author=self.user)
-        #     print(Post.objects.count())
-        #     url = reverse('post_delete', kwargs={"pk": 1})
-        #     response = self.client.post(url, follow=True)
-        #     self.assertRedirects(response, '/')
+    def test_logged_in_user_can_delete_own_post(self):
+
+        # log user in
+        logged_in = self.client.login(
+            username=self.users[0]['username'],
+            password=self.users[0]['password'])
+
+        # create a post
+        post = Post.objects.create(
+            topic=self.topic, title='Hej', image='abc.png',
+            author=self.users[0]['user'])
+        url = reverse('post_delete', kwargs={"pk": 1})
+        response = self.client.post(url)
+
+        # check redirect back to homepage
+        self.assertRedirects(response, '/')
+
+        # check that new post has been deleted
+        posts = Post.objects.filter(title='Hej')
+        self.assertEqual(len(posts), 0)
