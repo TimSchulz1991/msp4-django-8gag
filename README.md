@@ -70,3 +70,20 @@ A clean sans-serif font called 'Roboto Condensed', which is similar to the font 
 
 The initially sketched wireframes of the page on desktop and mobile can be seen below. The final page ended up being very close to these mockups.
 ![This image provides an overview of the initial wireframes for desktop and mobile](media/readme/wireframes.png)
+
+## Agile
+
+For this project the GitHub Kanban agile project management tool was used to create EPICs, add User Stories to these EPICs and give each user story relevant tasks. 
+Furthermore, each user story was labelled with a must-have, should-have or could-have tag. All must-have user stories have been finished throughout the project and even one should-have user story could be implemented. All remaining should-have and could-have stories could not be implemented due to time contraints, but will be great additions to build upon this page in the future. 
+
+Throughout the development process, the stories (including their tasks) were constantly updated according to the progress and pushed into the right cloumn (in progress / done).
+![This image provides an overview of the Kanban board on Github](media/readme/kanban.png)
+
+### Unfinished User Stories / Future Features
+- Users should be able to downvote bad posts and this "dislike-counter" should be visible to all page visitors
+- A user should be able to see all his recent posts, comments and likes in a "summary" section in his profile
+- A user should be able to see all posts from another user, when clicking on their profile, and even be able to get in touch with them with a simple chat function
+- A user should be able to reset their username/password
+- A user should be able to sign up/log in with their social accounts (e.g. FB/Google)
+- Users should be able to upload videos as well
+- Users should be able to join discussion rooms regarding their favourite meme topics on the page
