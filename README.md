@@ -1,108 +1,72 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# 8GAG - [Live link](https://msp4-8gag.herokuapp.com/)
 
-Welcome Tim Schulz,
+If you want to laugh and enjoy some good memes, you have come to the right place! 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+8GAG is a fully responsive meme website, based on a very popular meme page called 9GAG. 
+It is a place where users can create a profile, share their best memes, comment and like on other people's memes, or simply have a fun time.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+![This image provides an overview of the page on all screen sizes](media/readme/responsiveness.png)
 
-## Gitpod Reminders
+# User Experience
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## EPICs --> User Stories
 
-`python3 -m http.server`
+(MH - Must Have, SH - Should Have, CH - Could Have)
 
-A blue button should appear to click: _Make Public_,
+### 1. User authentication/authorisation 
+- As a site visitor, I want to be able to register/login with username/password to become a user, so that I can access special functionalities on the page (MH)
+- As a site visitor, I want to be able to create an account with personal information about me, so that I have a personalized profile (MH)
+- As a site visitor/user, I want to be constantly updated about my login status or informed about errors, so that I can see what state I am browsing the page in (MH)
+- As a user, I want to be able to reset my password/username, so that I do not lose my account in case I forgot one of them (CH)
+- As a site visitor, I can register or log in with my social accounts, so that I do not need to create a new account only for this page (CH)
 
-Another blue button should appear to click: _Open Browser_.
+### 2. Browse Site
+- As a site visitor, I want to be able to browse the feed and see all the latest memes in chronological order, so that I can enjoy the page without being logged in (MH)
+- As a site visitor, I want to be able to filter for certain categories of memes, so that I can only see memes that interest me (MH)
+- As a site visitor, I want to be able to click on a post to see its comments, so that I can see what others have to say about the post (MH)
+- As a site visitor, I want to see the number of likes/comments on each post in the feed, so that I can see right away if a meme is funny/popular (MH)
+- As a site visitor, I can see dislikes on each post in the feed, so that I can see right away if other users did not like a meme (SH)
+- As a site visitor, I can search for certain words in the post title, so that I can find very specific posts (SH)
+- As a logged-in user, I can participate in chat rooms regarding certain topics, so that I can discuss with other users about a topic I am interested in (CH)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### 3. Post a Meme
+- As a logged-in user, I want to be able to create and delete a post with a picture, so that I can share my memes with others (MH)
+- As a logged-in user, I can also upload videos, so that I can enjoy and post funny videos too (CH)
 
-A blue button should appear to click: _Make Public_,
+### 4. Likes/Comments
+- As a logged-in user, I want to be able to create and delete comments, so that I can interact with other people's memes (MH)
+- As a logged-in user, I want to be able to like and unlike a post, so that I can interact with other people's memes and show them my appreciation (MH)
+- As a logged-in user, I can downvote posts, to show that I dislike another meme (SH)
 
-Another blue button should appear to click: _Open Browser_.
+### 5. Profile Section
+- As a logged-in user, I want to see my profile information in a special section next to the feed, so that I know I am logged it at first glance (MH)
+- As a logged-in user, I want to be able to update my profile information (text about me and picture) to make my profile more individual (MH)
+- As a logged-in user, I want to be able to delete my profile, so that the site has no stored information about me anymore (MH)
+- As a logged-in user, I want to be able to click on my profile name and then be able to see all my recently posted memes (SH)
+- As a logged-in user, I want to be able to click on other user's profile names and then be able to see all their public profile info and their latest posts (CH)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### 6. Admin Priviledges 
+- As an admin/superuser, I want to be able to delete other users, posts and comments (MH)
 
-To log into the Heroku toolbelt CLI:
+In total, 14 user stories are a must-have (61%), 4 are should-have and 5 are could-have. 
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Design
 
-------
+### Color Scheme
+The main colors used throughout the page are closely aligned to the dark colors of the 9GAG website (while browsing in dark mode). This makes the memes really "pop out" and puts them right into focus. 
 
-## Release History
+- The navigation bar and the footer are black while the page background is kep in a very dark blue 
+- Other elements follow the Bootstrap color scheme 
+- The page is using blue buttons and icons for actions such as creating a new meme, going to a certain page or adding a comment
+- Turquoise buttons and texts give the user valuable information about the page or let them perform actions regarding their profile
+- Red buttons signal that a post/comment can be deleted
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Typography
+A clean sans-serif font called 'Roboto Condensed', which is similar to the font used by 9GAG, has been used throughout the page in order to present the text in a clear, non-distracting way.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Wireframes
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+The initially sketched wireframes of the page on desktop and mobile can be seen below. The final page ended up being very close to these mockups.
+![This image provides an overview of the initial wireframes for desktop and mobile](media/readme/wireframes.png)
