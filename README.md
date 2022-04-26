@@ -70,6 +70,7 @@ A clean sans-serif font called 'Roboto Condensed', which is similar to the font 
 
 The initially sketched wireframes of the page on desktop and mobile can be seen below. The final page ended up being very close to these mockups.
 ![This image provides an overview of the initial wireframes for desktop and mobile](media/readme/wireframes.png)
+During the wireframing process I was gathering inspiration and ideas from the 9GAG website and made sure to implement its most important features and design elements.
 
 ## Agile
 
@@ -87,3 +88,91 @@ Throughout the development process, the stories (including their tasks) were con
 - A user should be able to sign up/log in with their social accounts (e.g. FB/Google)
 - Users should be able to upload videos as well
 - Users should be able to join discussion rooms regarding their favourite meme topics on the page
+
+## Data Model
+### DBMS ERD
+
+![This image provides an overview of the database models](media/readme/dbms-erd.png)
+
+### User/Profile Models
+- The User model was extended with a Profile model, which has a OneToOne relationship with the User Model
+- The Profile model is adding a bio text and a profile image for each user, which the user can add voluntarily
+
+### Topic Model
+- Topics can only be created by the admin/superuser via the Topic model
+
+### Post Model
+- With the Post model, users can add posts as authors 
+- The author field has a foreign key (FK) relationship to the User model id field 
+- The topic field in the Post model has a FK relationship to the Topic model id field 
+- The likes field of the Post model has a ManyToMany relationship to the User model id field 
+
+### Comment Model
+- With the Comment model, users can add comments to specific posts
+- The author field has a FK relationship to the User model id field 
+- The post field has a FK relationship to the Post model id field
+
+### Database
+- The database uses a SQL database through PostgreSQL
+
+
+## Technologies used
+### Languages used
+#### HTML
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+
+#### CSS
+
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+
+#### JavaScript
+
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
+#### Python
+
+- [Python](https://www.python.org/)
+
+
+### Workspace
+
+#### Gitpod
+
+[GitPod](https://gitpod.io/) was used as a virtual IDE workspace to build this site.
+
+### Version Control
+
+#### Git
+
+[Git](https://git-scm.com/) was used for version control by utilizing the Gitpod terminal to add and commit to Git and push to GitHub.
+
+#### GitHub
+
+[GitHub](https://github.com/) is used to store the code for this project after being pushed from Git.
+
+### Wireframing
+
+#### Excalidraw
+
+[Excalidraw](https://excalidraw.com/) was used to create the wireframes during the design process.
+
+### Responsive Design
+
+#### Techsini
+
+[Techsini.com](https://techsini.com/multi-mockup/) was used to check the responsive design of the site, and to create the final site image.
+
+### Site Design
+
+#### Font Awesome
+
+[Font Awesome](https://fontawesome.com/) was used on the page to add icons.
+
+#### Google Fonts
+
+[Google Fonts](https://fonts.google.com/) was used to import an appropriate font for the site.
+
+#### Bootstrap
+
+[Bootstrap](https://getbootstrap.com/) was used for styling and responsiveness.

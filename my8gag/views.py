@@ -80,7 +80,7 @@ def postView(request, pk):
                     body=request.POST.get('body')
                 )
                 messages.success(
-                        request, 'Your comment was created successfully!')
+                    request, 'Your comment was created successfully!')
         except Exception as E:
             print(E)
             return redirect('post_view', pk=post.id)
@@ -117,7 +117,7 @@ def createPost(request):
         form = PostForm(request.POST, request.FILES)
         # request.FILES necessary so that file is submitted
         # also required to add enctype to the form
-        
+
         if form.is_valid():
 
             post = form.save(commit=False)
@@ -130,7 +130,8 @@ def createPost(request):
             except Exception as E:
                 print(E)
                 messages.error(
-                    request, "Make sure to upload an image file (PNG/JPG)!")
+                    request,
+                    "Make sure to upload an image file (PNG/JPG/GIF)!")
 
     context = {'form': form}
     return render(request, 'my8gag/post_form.html', context)
@@ -228,7 +229,8 @@ def editProfile(request, pk):
             except Exception as E:
                 print(E)
                 messages.error(
-                    request, "Make sure to upload an image file (PNG/JPG)!")
+                    request,
+                    "Make sure to upload an image file (PNG/JPG/GIF)!")
 
     context = {'profile': profile, 'form': form}
     return render(request, 'my8gag/edit_profile.html', context)
