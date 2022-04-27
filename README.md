@@ -210,7 +210,7 @@ Throughout the development process, the stories (including their tasks) were con
 
 ## Testing
 
-The W3C Markup Validator, W3C CSS Validator Services, JSHint and PEP8 were used to validate the site to ensure there were no syntax errors in the project.
+The W3C Markup Validator, W3C CSS Validator Services, PEP8 and JSHint were used to validate the site to ensure there were no syntax errors in the project.
 
 - [W3C Markup Validator](https://validator.w3.org/nu/)
     - The main feed page has no errors, just a warning for each post to have an unnecessary aria-label. However, this label tells users that use a screen reader how many likes a post has. If only the number would be read to them, they could not understand easily what it meant, so I ignored this warning.
@@ -237,7 +237,7 @@ The W3C Markup Validator, W3C CSS Validator Services, JSHint and PEP8 were used 
 
 ![This image provides an overview of the Lighthouse results](media/readme/lighthouse.png)
 
-I suspect that the results for performance are influenced by the missing pagination as described in the "Future Features" section.
+I suspect that the result for performance is influenced by the missing pagination as described in the "Future Features" section.
 
 ## Testing
 
@@ -265,7 +265,7 @@ I suspect that the results for performance are influenced by the missing paginat
 
 #### 3. Post a Meme
 - As a logged-in user, I want to be able to create and delete a post with a picture, so that I can share my memes with others (MH)
-    - Works flawlessly as intended. An error messsage is shown in case an error occurs (e.g. uploading wrong file format). 
+    - Works as intended. An error messsage is shown in case an error occurs (e.g. uploading wrong file format). 
 
 #### 4. Likes/Comments
 - As a logged-in user, I want to be able to create and delete comments, so that I can interact with other people's memes (MH)
@@ -297,7 +297,7 @@ Models
 - I successfully tested that creating a new topic works as intended.
 
 Views
-- In my setUp function I set up both a mock topic and two moch users, which I tear down after each test in my tearDown function.
+- In my setUp function I set up both a mock topic and two mock users, which I tear down after each test in my tearDown function.
 - I successfully tested that the feed/homepage loads properly and uses the right template.
 - I successfully tested that the individual post page loads properly and uses the right template.
 - With the help of tutor service from CI, I successfully tested that a logged-in user can create a new post and that the created post really exists in the DB. 
@@ -320,12 +320,12 @@ Views
 | Topics sidebar | Use Search input field | Lets the user search for keywords in the meme titles. | ✓ |
 | Topics sidebar | Screen size reduction to small | Topics sidebar disappears and is only visible in navigation bar hamburger menu. | ✓ |
 | Main Feed | Scroll through | List of memes is scrollable and ordered by newest first. All relevant info is shown (image, title, category, author, number of comments and likes). | ✓ |
-| Main Feed | Click "Create Post" at end of list | Takes the user to the post creation page. | ✓ |
+| Main Feed | Click "Create Post" at end of list | Takes the user to the post creation page (if logged in, otherwise redirected to login page). | ✓ |
 | Main Feed | No posts available | When no posts are available (e.g. in a certain category/search) an appropriate message is shown. | ✓ |
 | Main Feed Delete Post | Click "Delete" on your own post | Takes the user to the "Delete Post" page. | ✓ |
 | Main Feed Delete Post | See delete button | Button only visible for own posts | ✓ |
 | Profile section while logged out | Click "Login/Register" | Tells the users that they need to log in/register to perform action on the page. Button forwards to the Login/Register page as intended. | ✓ |
-| Profile section while logged in | Imformation visible | Shows the user login status and (if added) profile information (image/bio). | ✓ |
+| Profile section while logged in | Information visible | Shows the user login status and (if added) profile information (image/bio). | ✓ |
 | Profile section while logged in | Click "Edit profile" | Takes the user to the Edit Profile page. | ✓ |
 | Profile section while logged in | Click "Delete profile" | Takes the user to the Delete Profile page. | ✓ |
 | Profile section | Screen size reduction to medium | Profile section disappears and can be found under the hamburger icon in the navbar, incl. the login account if user is logged in. | ✓ |
