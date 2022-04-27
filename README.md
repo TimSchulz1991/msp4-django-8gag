@@ -287,3 +287,18 @@ I suspect that the results for performance are influenced by the missing paginat
 
 ### Automated testing
 
+In order to practice writing automated Django tests with unittest, I wanted to create at least one test for each of my forms.py, models.py and my views.py files.
+Due to time constraints I unfortunately did not manage to add more automated test, so everything not covered in this section will be tested manually in the next section. 
+
+Forms
+- I successfully tested that the expected fields are existing in both the Profile and the Post form Meta class. 
+
+Models
+- I successfully tested that creating a new topic works as intended.
+
+Views
+- In my setUp function I set up both a mock topic and two moch users, which I tear down after each test in my tearDown function.
+- I successfully tested that the feed/homepage loads properly and uses the right template.
+- I successfully tested that the individual post page loads properly and uses the right template.
+- With the help of tutor service from CI, I successfully tested that a logged-in user can create a new post and that the created post really exists in the DB. 
+- I successfully tested that a logged-in user can delete their own post and that the post is truly deleted from the database.  
