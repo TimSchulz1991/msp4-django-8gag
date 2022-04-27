@@ -302,3 +302,103 @@ Views
 - I successfully tested that the individual post page loads properly and uses the right template.
 - With the help of tutor service from CI, I successfully tested that a logged-in user can create a new post and that the created post really exists in the DB. 
 - I successfully tested that a logged-in user can delete their own post and that the post is truly deleted from the database.  
+
+### Manual Testing
+
+#### Homepage/Navigation
+
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Navbar logo | Click "8GAG" | Takes the user to the home page. | ✓ |
+| Navbar Login/Register | Click link | Takes the user to the Login/Register page. | ✓ |
+| Navbar Logout link when logged in | Click link | Logs out user and redirects to a logout page. | ✓ |
+| Navbar Create Post when logged out | Click "Create Post" | Takes the user to the Login/Register page. | ✓ |
+| Navbar Create Post when logged in | Click "Create Post" | Takes the user to the post creation page. | ✓ |
+| Navbar small/medium screens | Click hamburger icon | The Login/Register, Logout and Topics element are available and work the same way as on large screens. | ✓ |
+| Topics sidebar | Click "All topics" | Keeps the user to the home page and shows all memes. | ✓ |
+| Topics sidebar | Click on any topic link | Keeps the user to the home page and shows all memes from the selected category. | ✓ |
+| Topics sidebar | Use Search input field | Lets the user search for keywords in the meme titles. | ✓ |
+| Topics sidebar | Screen size reduction to small | Topics sidebar disappears and is only visible in navigation bar hamburger menu. | ✓ |
+| Main Feed | Scroll through | List of memes is scrollable and ordered by newest first. All relevant info is shown (image, title, category, author, number of comments and likes). | ✓ |
+| Main Feed | Click "Create Post" at end of list | Takes the user to the post creation page. | ✓ |
+| Main Feed | No posts available | When no posts are available (e.g. in a certain category/search) an appropriate message is shown. | ✓ |
+| Main Feed Delete Post | Click "Delete" on your own post | Takes the user to the "Delete Post" page. | ✓ |
+| Main Feed Delete Post | See delete button | Button only visible for own posts | ✓ |
+| Profile section while logged out | Click "Login/Register" | Tells the users that they need to log in/register to perform action on the page. Button forwards to the Login/Register page as intended. | ✓ |
+| Profile section while logged in | Imformation visible | Shows the user login status and (if added) profile information (image/bio). | ✓ |
+| Profile section while logged in | Click "Edit profile" | Takes the user to the Edit Profile page. | ✓ |
+| Profile section while logged in | Click "Delete profile" | Takes the user to the Delete Profile page. | ✓ |
+| Profile section | Screen size reduction to medium | Profile section disappears and can be found under the hamburger icon in the navbar, incl. the login account if user is logged in. | ✓ |
+
+#### Post page
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Back button | Click it | Takes the user back to the previous position on the home page. | ✓ |
+| Page content | Scroll through page | The peviously clicked meme should show with all the relevant information visible (image, title, category, author, number of comments and likes, all comments written for this particular post). | ✓ |
+| Delete Post | Click "Delete" on your own post | Takes the user to the "Delete Post" page. | ✓ |
+| Delete Post | See delete button on own post | Button only visible for own posts | ✓ |
+| Like/Unlike button | Click Arrow up button | Add/removes a post like from the user. Shows arrow/number of likes in blue after it was liked. Number of likes is updated correctly. | ✓ |
+| Add comment | Write comment and click blue button to send | Comment is added below on the page and a temporary success message appears. | ✓ |
+| Delete Comment | Click "Delete" on your own comment | Takes the user to the "Delete Comment" page. | ✓ |
+| Delete Comment | See delete button on own comment | Button only visible for own comments | ✓ |
+| Profile section while logged out | Click "Login/Register" | Tells the users that they need to log in/register to perform action on the page. Button forwards to the Login/Register page as intended. | ✓ |
+| Profile section while logged in | Imformation visible | Shows the user login status and (if added) profile information (image/bio). | ✓ |
+| Profile section while logged in | Click "Edit profile" | Takes the user to the Edit Profile page. | ✓ |
+| Profile section while logged in | Click "Delete profile" | Takes the user to the Delete Profile page. | ✓ |
+| Profile section | Screen size reduction to medium | Profile section disappears and can be found under the hamburger icon in the navbar, incl. the login account if user is logged in. | ✓ |
+
+#### "Post a Meme" page
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| All fields mandatory | Try to post form while leaving one, two or all fields empty | Not possible, tooltip appears, form is not sent. | ✓ |
+| Wrong file format | Upload a file format not supported | Error message is shown at top of page. | ✓ |
+| Successful post | Post a meme successfully | A temporary success message will appear. | ✓ |
+
+#### Edit Profile page
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Not mandatory | Send empty form | Form can be sent without adding text and/or image. | ✓ |
+| Wrong file format | Upload a file format not supported | Error message is shown at top of page. | ✓ |
+| Clear information | Delete text/image and send form | All previously added information/files can be cleared again. | ✓ |
+| Delete profile link | Click "Delete profile" | Takes the user to the Delete Profile page. | ✓ |
+| Edit Profile success message | Success message on top of page | Shows every time the profile was edited. | ✓ |
+
+#### Delete Post/Comment/User
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Content to delete is shown | Look at page | User should be informed about what Post/Comment/User is about to be deleted. | ✓ |
+| Confirm button | Click button | Post/Comment/User is deleted and user is redirected (either back to post or to homepage). Number of comments is updated correctly. A temporary success message appears. | ✓ |
+| "Keep it"" button | Click button | Post/Comment/User is not deleted and user is redirected (either back to post or to homepage). | ✓ |
+| Profile section | Visibility | For "Delete User" it's visible on all screen sizes, for "Delete Post/Comment" only visible from large screen sizes. | ✓ |
+
+#### Register
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Registration form works | Enter username / password | The Django registration form is validating automatically if the username is valid and if the passwords match and are valid. Otherwise an error message is shown. | ✓ |
+| Sign-in link | Click | Takes the user to the Sign in page. | ✓ |
+| Successful registration | Finish registration process | Temporary success message appears. User is logged in automatically and redirected to homepage. | ✓ |
+
+#### Login
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Login | Add credentials | Django login form checks automatically that username and password match (and exist in DB). Otherwise shows error message. | ✓ |
+| Register link | Click | Takes the user to the Register page. | ✓ |
+| Successful login | Finish login process | User is logged in and redirected to homepage. Account that is logged in can be seen in the profile section. | ✓ |
+
+#### Logout
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Feed link | Click | Takes the user back to the homepage. | ✓ |
+| Login link | Click | Takes the user back to the Login/Register page. | ✓ |
+
+### Manual Testing on smaller screen sizes and other browsers
+
+The page was tested on all popular browsers (Chrome, Firefox, Safari, Opera) and on all screen sizes (xl - desktop, l - laptop, m - iPad Air, sm - iPhone 12).
+
+## Bugs
+The following bugs were found but could not be fixed before hand-in, due to time-constraints:
+- When visiting the page on a phone in landscape mode and opening the hamburger menu navigation, parts of the list items are not visible and cannot be scrolled to.
+- When posting/creating a post/comment and clicking/tapping the send post/comment button quickly twice, the post/comment is created twice.
+- It is possible to upload certain files as memes that should not be uploaded. For most such files, the form will generate an error (e.g. json, zip etc.), but for example PDF files can be uploaded and then only show the alt text. 
+
+I will try to find solutions to fix all these bugs in the near future (of course only after cloning the repository). 
