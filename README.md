@@ -219,6 +219,7 @@ The W3C Markup Validator, W3C CSS Validator Services, PEP8 and JSHint were used 
     - The page to create a new post has no errors or warnings.
     - The delete page (for post, comment and user) has no errors or warnings.
     - The register/login/logout pages have no errors or warnings. 
+    - The 403/404/500 pages have no errors or warnings.
 
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) shows no errors when entering the CSS code directly.
 
@@ -390,6 +391,12 @@ Views
 | ---- | ------ | --------------- | ---- |
 | Feed link | Click | Takes the user back to the homepage. | ✓ |
 | Login link | Click | Takes the user back to the Login/Register page. | ✓ |
+
+#### 403/404/500
+| Test | Action | Expected Result | Pass |
+| ---- | ------ | --------------- | ---- |
+| Correct content | Look at content | All three pages show the correct content and a link back to hompage. | ✓ |
+| Feed link | Click | Takes the user back to the homepage. | ✓ |
 
 ### Manual Testing on smaller screen sizes and other browsers
 
