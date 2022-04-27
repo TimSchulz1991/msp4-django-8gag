@@ -88,6 +88,8 @@ Throughout the development process, the stories (including their tasks) were con
 - A user should be able to sign up/log in with their social accounts (e.g. FB/Google)
 - Users should be able to upload videos as well
 - Users should be able to join discussion rooms regarding their favourite meme topics on the page
+- VERY IMPORTANT: For loading speed purposes I would need to implement some sort of "invisible" pagination in the future. I do not want actual pages, but it should work in a way that only a part of the page is loaded at once. 
+- I should also figure out a way how to automatically compress the image size further before a user uploads any kind of image file. 
 
 ## Data Model
 ### DBMS ERD
@@ -210,3 +212,69 @@ Throughout the development process, the stories (including their tasks) were con
 
 The W3C Markup Validator, W3C CSS Validator Services, JSHint and PEP8 were used to validate the site to ensure there were no syntax errors in the project.
 
+- [W3C Markup Validator](https://validator.w3.org/nu/)
+    - The main feed page has no errors, just a warning for each post to have an unnecessary aria-label. However, this label tells users that use a screen reader how many likes a post has. If only the number would be read to them, they could not understand easily what it meant, so I ignored this warning.
+    - The individual post page (after clicking on a post) has no errors, just one aria-label warning that I chose to ignore for a similar reason as above.
+    - The "Edit Profile" page has no erros or warnings.
+    - The page to create a new post has no errors or warnings.
+    - The delete page (for post, comment and user) has no errors or warnings.
+    - The register/login/logout pages have no errors or warnings. 
+
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) shows no errors when entering the CSS code directly.
+
+- [PEP8](http://pep8online.com/)
+    - admin.py shows no errors
+    - apps.py shows no errors
+    - forms.py shows no errors
+    - models.py shows no errors
+    - signal.py shows no errors
+    - urls.py shows no errors
+    - views.py shows no errors
+
+- [JSHint](https://jshint.com/) shows no errors.
+
+### Lighthouse
+
+![This image provides an overview of the Lighthouse results](media/readme/lighthouse.png)
+
+I suspect that the results for performance are influenced by the missing pagination as described in the "Future Features" section.
+
+## Testing
+
+### Testing User Stories from User Experience (UX) Section
+
+#### 1. User authentication/authorisation 
+- As a site visitor, I want to be able to register/login with username/password to become a user, so that I can access special functionalities on the page (MH)
+    - 
+- As a site visitor, I want to be able to create an account with personal information about me, so that I have a personalized profile (MH)
+- As a site visitor/user, I want to be constantly updated about my login status or informed about errors, so that I can see what state I am browsing the page in (MH)
+- As a user, I want to be able to reset my password/username, so that I do not lose my account in case I forgot one of them (CH)
+- As a site visitor, I can register or log in with my social accounts, so that I do not need to create a new account only for this page (CH)
+
+#### 2. Browse Site
+- As a site visitor, I want to be able to browse the feed and see all the latest memes in chronological order, so that I can enjoy the page without being logged in (MH)
+- As a site visitor, I want to be able to filter for certain categories of memes, so that I can only see memes that interest me (MH)
+- As a site visitor, I want to be able to click on a post to see its comments, so that I can see what others have to say about the post (MH)
+- As a site visitor, I want to see the number of likes/comments on each post in the feed, so that I can see right away if a meme is funny/popular (MH)
+- As a site visitor, I can see dislikes on each post in the feed, so that I can see right away if other users did not like a meme (SH)
+- As a site visitor, I can search for certain words in the post title, so that I can find very specific posts (SH)
+- As a logged-in user, I can participate in chat rooms regarding certain topics, so that I can discuss with other users about a topic I am interested in (CH)
+
+#### 3. Post a Meme
+- As a logged-in user, I want to be able to create and delete a post with a picture, so that I can share my memes with others (MH)
+- As a logged-in user, I can also upload videos, so that I can enjoy and post funny videos too (CH)
+
+#### 4. Likes/Comments
+- As a logged-in user, I want to be able to create and delete comments, so that I can interact with other people's memes (MH)
+- As a logged-in user, I want to be able to like and unlike a post, so that I can interact with other people's memes and show them my appreciation (MH)
+- As a logged-in user, I can downvote posts, to show that I dislike another meme (SH)
+
+#### 5. Profile Section
+- As a logged-in user, I want to see my profile information in a special section next to the feed, so that I know I am logged it at first glance (MH)
+- As a logged-in user, I want to be able to update my profile information (text about me and picture) to make my profile more individual (MH)
+- As a logged-in user, I want to be able to delete my profile, so that the site has no stored information about me anymore (MH)
+- As a logged-in user, I want to be able to click on my profile name and then be able to see all my recently posted memes (SH)
+- As a logged-in user, I want to be able to click on other user's profile names and then be able to see all their public profile info and their latest posts (CH)
+
+#### 6. Admin Priviledges 
+- As an admin/superuser, I want to be able to delete other users, posts and comments (MH)

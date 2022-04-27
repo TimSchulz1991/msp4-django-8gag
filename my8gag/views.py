@@ -34,7 +34,7 @@ def registerView(request):
 
 def home(request):
     """
-    This view is the main meme page of the project, in which a visitor 
+    This view is the main meme page of the project, in which a visitor
     can look at memes, filter for memes and see their profile information.
     """
     q = request.GET.get('q') if request.GET.get('q') is not None else ''

@@ -12,5 +12,3 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('bio', 'profile_image',)
-
-        

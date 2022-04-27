@@ -27,10 +27,10 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand text-light" href="{% url 'home' %}" aria-label="Back to the homepage">8GAG</a>
-                <a href="{% url 'create_post' %}" class="nav-link d-inline-block d-lg-none"
-                    aria-label="Create a new post here"><button class="btn btn-primary rounded-pill"> <i
-                            class="fa-solid fa-plus"></i> Create new
-                        post</button></a>
+                <a href="{% url 'create_post' %}"
+                    class="nav-link d-inline-block d-lg-none btn btn-primary rounded-pill"><i
+                        class="fa-solid fa-plus"></i> Create new
+                    post</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -40,37 +40,34 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         {% if request.user.is_authenticated %}
-                        <span class="d-lg-none text-center lead border-white mt-4">You are logged in as
-                            @{{request.user.username}}</span>
+                        <li class="d-lg-none text-center lead border-white mt-4">You are logged in as
+                            @{{request.user.username}}</li>
                         <li class="nav-item">
                             <a class="nav-link text-light text-center mt-3 mt-lg-0"
-                                href="{% url 'edit_profile' request.user.id %}" aria-label="Your profile info">My
+                                href="{% url 'edit_profile' request.user.id %}">My
                                 Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light text-center" href="{% url 'logout' %}"
-                                aria-label="Logout here">Logout</a>
+                            <a class="nav-link text-light text-center" href="{% url 'logout' %}">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-light text-center" href="{% url 'login' %}"
-                                aria-label="Login or register an account here">Login/Register</a>
+                            <a class="nav-link text-light text-center" href="{% url 'login' %}">Login/Register</a>
                         </li>
                         {% endif %}
-                        <div class="d-md-none mt-5">
+                        <li class="d-md-none mt-5">
                             <div class="text-center">
                                 <h4>Topics</h4>
                                 <hr>
                                 <div>
-                                    <a href="{% url 'home' %}" class="links lead text-primary text-decoration-none"
-                                        aria-label="Browse all memes here">All
+                                    <a href="{% url 'home' %}" class="links lead text-primary text-decoration-none">All
                                         topics</a>
                                 </div>
                                 {% for topic in topics %}
                                 <div>
                                     <!-- Variable q is used in views in home function -->
-                                    <a href="{% url 'home' %}?q={{topic.name}}" class="links text-decoration-none"
-                                        aria-label="Browse memes in the category {{topic.name}}">{{ topic.name }}</a>
+                                    <a href="{% url 'home' %}?q={{topic.name}}"
+                                        class="links text-decoration-none">{{ topic.name }}</a>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -81,12 +78,12 @@
                                         placeholder="Search for memes...">
                                 </form>
                             </div>
-                        </div>
+                        </li>
                     </ul>
-                    <a href="{% url 'create_post' %}" class="nav-link d-none d-lg-inline-block"
-                        aria-label="Create a new post here"><button class="btn btn-primary rounded-pill"> <i
-                                class="fa-solid fa-plus"></i> Create new
-                            post</button></a>
+                    <a href="{% url 'create_post' %}"
+                        class="nav-link d-none d-lg-inline-block btn btn-primary rounded-pill ml-3"><i
+                            class="fa-solid fa-plus"></i> Create new
+                        post</a>
                 </div>
             </div>
         </nav>
@@ -99,7 +96,6 @@
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
                     {{ message | safe }}
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
                 </div>
                 {% endfor %}
             </div>
@@ -108,11 +104,7 @@
 
     <!-- Main content -->
     <div role="main" class="container pt-2 my-2">
-        <div class="row">
-            <div class="col">
-                {% block content %}{% endblock %}
-            </div>
-        </div>
+        {% block content %}{% endblock %}
     </div>
 
     <!-- Footer -->

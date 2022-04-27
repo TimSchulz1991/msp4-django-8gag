@@ -6,7 +6,7 @@
     <!-- Delete post section -->
     <main class="col-lg-8">
         {% if text_type == 'post' %}
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Are you sure you want to delete your post (see below)?</legend>
@@ -21,7 +21,7 @@
 
         <!-- Delete user section -->
         {% elif text_type == 'user' %}
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Are you sure you want to delete your user account?</legend>
@@ -32,7 +32,7 @@
 
         <!-- Delete comment section -->
         {% else %}
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Are you sure you want to delete your comment (see below)?</legend>
@@ -69,10 +69,8 @@
         {% else %}
         <div class="card card-profile text-center p-3">
             <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
-                to
-                your profile and add a bio text.</p>
-            <a href="{% url 'login' %}"><button
-                    class="btn btn-primary rounded-pill btn-profile">Login/Register</button></a>
+                to your profile and add a bio text.</p>
+            <a href="{% url 'login' %}" class="btn btn-primary rounded-pill btn-profile">Login/Register</a>
         </div>
         {% endif %}
     </aside>

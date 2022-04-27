@@ -7,8 +7,8 @@
     <!-- Post section -->
     <main class="col-lg-9">
         <div class="mb-2">
-            <a href="{% url 'home' %}#{{post.id}}" aria-label="Go back to the main feed"><button
-                    class="btn btn-primary btn-profile"><i class="fa-solid fa-angle-left"></i></button></a>
+            <a href="{% url 'home' %}#{{post.id}}" aria-label="Go back to the main feed"
+                class="btn btn-primary btn-profile"><i class="fa-solid fa-angle-left"></i></a>
         </div>
 
         <!-- Meme section -->
@@ -21,8 +21,7 @@
                 <small>
                     @{{ post.author.username }} - {{ post.created | timesince }} ago
                     {% if request.user == post.author %}
-                    <a href="{% url 'post_delete' post.id %}" aria-label="Delete your post here"><button
-                            class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
+                    <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</a>
                     {% endif %}
                 </small>
                 <div class="mt-2">
@@ -65,7 +64,7 @@
         <h3 class="text-center mt-3">Comments</h3>
         {% if request.user.is_authenticated %}
         <div class="mb-5 mt-3 comment-input">
-            <form action="" method="POST">
+            <form method="POST">
                 {% csrf_token %}
                 <input class="form-control" type="text" name="body" placeholder="Add comment..."
                     aria-label="Add a comment here">
@@ -90,8 +89,7 @@
                     @{{ comment.author.username }} - {{ comment.created | timesince }} ago
                     {% if request.user == comment.author %}
                     <a href="{% url 'comment_delete' comment.id %}?post_id={{ post.id }}"
-                        aria-label="Delete your comment here"><button
-                            class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</button></a>
+                        class="btn btn-danger btn-profile py-0 px-2 ml-2">Delete</a>
                     <!-- Pass in the post_id for the deleteComment view  -->
                     {% endif %}
                 </small>
@@ -120,10 +118,10 @@
                     <p class="text-muted">{{request.user.profile.bio}}</p>
                     {% endif %}
                 </div>
-                <a href="{% url 'edit_profile' request.user.id %}"><button class="btn btn-info btn-profile"
-                        aria-label="Edit your profile here">Edit profile</button></a>
-                <a href="{% url 'user_delete' request.user.id %}" class="delete-link mt-2 text-decoration-none"
-                    aria-label="Delete your profile here">Delete</a>
+                <a href="{% url 'edit_profile' request.user.id %}" class="btn btn-info btn-profile w-50 mx-auto">Edit
+                    profile</a>
+                <a href="{% url 'user_delete' request.user.id %}"
+                    class="delete-link mt-2 text-decoration-none">Delete</a>
             </div>
         </div>
         {% else %}
@@ -131,8 +129,7 @@
             <p>Log in, if you want to create, comment on and like posts. As a logged in user, you can also add a picture
                 to
                 your profile and add a bio text.</p>
-            <a href="{% url 'login' %}"><button class="btn btn-info btn-profile"
-                    aria-label="Log in or register as a user here">Login/Register</button></a>
+            <a href="{% url 'login' %}" class="btn btn-info btn-profile w-75 mx-auto">Login/Register</a>
         </div>
         {% endif %}
     </aside>
