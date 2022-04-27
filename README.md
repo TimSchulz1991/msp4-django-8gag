@@ -157,11 +157,15 @@ Throughout the development process, the stories (including their tasks) were con
 
 [Excalidraw](https://excalidraw.com/) was used to create the wireframes during the design process.
 
+#### Lucid
+
+[Lucid](https://lucid.app/) was used to create the ERD overview.
+
 ### Responsive Design
 
 #### Techsini
 
-[Techsini.com](https://techsini.com/multi-mockup/) was used to check the responsive design of the site, and to create the final site image.
+[Techsini.com](https://techsini.com/multi-mockup/) was used to check the responsive design of the site, and to create the final site image for the Readme.
 
 ### Site Design
 
@@ -176,3 +180,33 @@ Throughout the development process, the stories (including their tasks) were con
 #### Bootstrap
 
 [Bootstrap](https://getbootstrap.com/) was used for styling and responsiveness.
+
+### Development
+
+#### Django
+[Django](https://www.djangoproject.com/) was used as the framework to build this project.
+
+#### - Django Crispy Forms
+[Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) was used to give all forms in the project an imrpoved styling.
+
+### Hosting/Database
+
+#### Heroku
+[Heroku](https://id.heroku.com/login) is used to host the application.
+
+#### Gunicorn
+[Gunicorn](https://gunicorn.org/) is used for deploying the project to Heroku.
+
+#### Cloudinary
+[Cloudinary](https://cloudinary.com/) is used to host the static and media files and serve them to Heroku.
+
+#### Secret Key Generator
+[miniwebtool.com](https://miniwebtool.com/django-secret-key-generator/) was used to generate a secure secret key.
+
+#### PostgreSQL
+[PostgreSQL](https://www.postgresql.org/) is used as the database.
+
+## Testing
+
+The W3C Markup Validator, W3C CSS Validator Services, JSHint and PEP8 were used to validate the site to ensure there were no syntax errors in the project.
+
