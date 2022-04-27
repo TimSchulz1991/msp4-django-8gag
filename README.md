@@ -241,40 +241,49 @@ I suspect that the results for performance are influenced by the missing paginat
 
 ## Testing
 
-### Testing User Stories from User Experience (UX) Section
+### Testing of implemented User Stories from User Experience (UX) Section
 
 #### 1. User authentication/authorisation 
 - As a site visitor, I want to be able to register/login with username/password to become a user, so that I can access special functionalities on the page (MH)
-    - 
+    - The Register/Login field is clearly visible in the navbar and in the profile section on desktop, or alternatively under the hamburger menu icon on smaller screens. The process works flawlessly.  
 - As a site visitor, I want to be able to create an account with personal information about me, so that I have a personalized profile (MH)
+    - This can be easily achieved by clicking on the My Profile link in the navbar or the Edit Profile button in the profile section on large screens. Then users can easily add a profile image and a bio text. 
 - As a site visitor/user, I want to be constantly updated about my login status or informed about errors, so that I can see what state I am browsing the page in (MH)
-- As a user, I want to be able to reset my password/username, so that I do not lose my account in case I forgot one of them (CH)
-- As a site visitor, I can register or log in with my social accounts, so that I do not need to create a new account only for this page (CH)
+    - On large screens you can immediately see if you are logged in, and if so, with which user name/account you are logged in. On smaller screens this can be seen when clicking on the hamburger menu icon. If an error occurs while updating the profile (e.g. wrong file format), the user will see a temporary error message.
 
 #### 2. Browse Site
 - As a site visitor, I want to be able to browse the feed and see all the latest memes in chronological order, so that I can enjoy the page without being logged in (MH)
+    - Works flawlessly as intended.
 - As a site visitor, I want to be able to filter for certain categories of memes, so that I can only see memes that interest me (MH)
+    - Works flawlessly as intended. 
 - As a site visitor, I want to be able to click on a post to see its comments, so that I can see what others have to say about the post (MH)
+    - Works flawlessly as intended. 
 - As a site visitor, I want to see the number of likes/comments on each post in the feed, so that I can see right away if a meme is funny/popular (MH)
-- As a site visitor, I can see dislikes on each post in the feed, so that I can see right away if other users did not like a meme (SH)
+    - Works flawlessly as intended. 
 - As a site visitor, I can search for certain words in the post title, so that I can find very specific posts (SH)
-- As a logged-in user, I can participate in chat rooms regarding certain topics, so that I can discuss with other users about a topic I am interested in (CH)
+    - Works flawlessly as intended. 
 
 #### 3. Post a Meme
 - As a logged-in user, I want to be able to create and delete a post with a picture, so that I can share my memes with others (MH)
-- As a logged-in user, I can also upload videos, so that I can enjoy and post funny videos too (CH)
+    - Works flawlessly as intended. An error messsage is shown in case an error occurs (e.g. uploading wrong file format). 
 
 #### 4. Likes/Comments
 - As a logged-in user, I want to be able to create and delete comments, so that I can interact with other people's memes (MH)
+    - Works as intended. However, in the future with more time, I want to implement it in a way that the page does not reload completely after a new comment was added.
 - As a logged-in user, I want to be able to like and unlike a post, so that I can interact with other people's memes and show them my appreciation (MH)
-- As a logged-in user, I can downvote posts, to show that I dislike another meme (SH)
+    - Works. However, I would like to improve two things: do not reload the whole page after a like was added and also make it possible to like a post on the main feed page. I did not manage to implement this for this project due to time constraints. 
 
 #### 5. Profile Section
 - As a logged-in user, I want to see my profile information in a special section next to the feed, so that I know I am logged it at first glance (MH)
+    - Implemented as intended on all screen sizes (even though on smaller screens the user needs to click on the hamburger icon to see their login status).
 - As a logged-in user, I want to be able to update my profile information (text about me and picture) to make my profile more individual (MH)
+    - Implemented as intended. 
 - As a logged-in user, I want to be able to delete my profile, so that the site has no stored information about me anymore (MH)
-- As a logged-in user, I want to be able to click on my profile name and then be able to see all my recently posted memes (SH)
-- As a logged-in user, I want to be able to click on other user's profile names and then be able to see all their public profile info and their latest posts (CH)
+    - Implemented as intended.
 
 #### 6. Admin Priviledges 
 - As an admin/superuser, I want to be able to delete other users, posts and comments (MH)
+    - Works as intended.
+
+### Automated testing
+

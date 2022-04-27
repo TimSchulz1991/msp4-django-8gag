@@ -118,7 +118,7 @@
                     <p class="text-muted">{{request.user.profile.bio}}</p>
                     {% endif %}
                 </div>
-                <a href="{% url 'edit_profile' request.user.id %}" class="btn btn-info btn-profile w-50 mx-auto">Edit
+                <a href="{% url 'edit_profile' request.user.id %}" class="btn btn-info btn-profile w-75 mx-auto">Edit
                     profile</a>
                 <a href="{% url 'user_delete' request.user.id %}"
                     class="delete-link mt-2 text-decoration-none">Delete</a>
