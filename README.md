@@ -7,9 +7,11 @@ It is a place where users can create a profile, share their best memes, comment 
 
 ![This image provides an overview of the page on all screen sizes](media/readme/responsiveness.png)
 
-# User Experience
+## User Experience
 
-## EPICs --> User Stories
+### EPICs --> User Stories
+
+In the following section I will describe my EPICs for this project and the user stories derived from each EPIC.
 
 (MH - Must Have, SH - Should Have, CH - Could Have)
 
@@ -56,7 +58,7 @@ In total, 14 user stories are a must-have (61%), 4 are should-have and 5 are cou
 ### Color Scheme
 The main colors used throughout the page are closely aligned to the dark colors of the 9GAG website (while browsing in dark mode). This makes the memes really "pop out" and puts them right into focus. 
 
-- The navigation bar and the footer are black while the page background is kep in a very dark blue 
+- The navigation bar and the footer are black while the page background is kept in a very dark blue 
 - Other elements follow the Bootstrap color scheme 
 - The page is using blue buttons and icons for actions such as creating a new meme, going to a certain page or adding a comment
 - Turquoise buttons and texts give the user valuable information about the page or let them perform actions regarding their profile
@@ -119,7 +121,9 @@ Throughout the development process, the stories (including their tasks) were con
 
 
 ## Technologies used
+
 ### Languages used
+
 #### HTML
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
@@ -317,8 +321,8 @@ Views
 | Navbar Create Post when logged out | Click "Create Post" | Takes the user to the Login/Register page. | ✓ |
 | Navbar Create Post when logged in | Click "Create Post" | Takes the user to the post creation page. | ✓ |
 | Navbar small/medium screens | Click hamburger icon | The Login/Register, Logout and Topics element are available and work the same way as on large screens. | ✓ |
-| Topics sidebar | Click "All topics" | Keeps the user to the home page and shows all memes. | ✓ |
-| Topics sidebar | Click on any topic link | Keeps the user to the home page and shows all memes from the selected category. | ✓ |
+| Topics sidebar | Click "All topics" | Keeps the user on the feed page and shows all memes. | ✓ |
+| Topics sidebar | Click on any topic link | Keeps the user on the feed page and shows all memes from the selected category. | ✓ |
 | Topics sidebar | Use Search input field | Lets the user search for keywords in the meme titles. | ✓ |
 | Topics sidebar | Screen size reduction to small | Topics sidebar disappears and is only visible in navigation bar hamburger menu. | ✓ |
 | Main Feed | Scroll through | List of memes is scrollable and ordered by newest first. All relevant info is shown (image, title, category, author, number of comments and likes). | ✓ |
@@ -339,7 +343,7 @@ Views
 | Page content | Scroll through page | The peviously clicked meme should show with all the relevant information visible (image, title, category, author, number of comments and likes, all comments written for this particular post). | ✓ |
 | Delete Post | Click "Delete" on your own post | Takes the user to the "Delete Post" page. | ✓ |
 | Delete Post | See delete button on own post | Button only visible for own posts | ✓ |
-| Like/Unlike button | Click Arrow up button | Add/removes a post like from the user. Shows arrow/number of likes in blue after it was liked. Number of likes is updated correctly. | ✓ |
+| Like/Unlike button while logged in | Click Arrow up button | Add/removes a post like from the user. Shows arrow/number of likes in blue after it was liked. Number of likes is updated correctly. | ✓ |
 | Add comment | Write comment and click blue button to send | Comment is added below on the page and a temporary success message appears. | ✓ |
 | Delete Comment | Click "Delete" on your own comment | Takes the user to the "Delete Comment" page. | ✓ |
 | Delete Comment | See delete button on own comment | Button only visible for own comments | ✓ |
@@ -461,7 +465,7 @@ I will try to find solutions to fix all these bugs in the near future (of course
         os.environ["SECRET_KEY"] = "your secret_key here"
         os.environ["CLOUDINARY_URL"] = "cloudinary url here"
 
-14. At the top of your settings.py file, add these
+14. At the top of your settings.py file, make sure these are added
 
         from pathlib import Path
         import os
@@ -470,13 +474,7 @@ I will try to find solutions to fix all these bugs in the near future (of course
         if os.path.isfile('env.py'):
             import env
 
-15. Add the SECRET_KEY and ALLOWED_HOSTS variables like this in your settings.py file
-
-        SECRET_KEY = os.environ.get('SECRET_KEY')
-
-        ALLOWED_HOSTS = ['localhost']
-
-16. Comment out DATABASES in your settings.py file and add the following DATABASES below
+15. Comment out DATABASES in your settings.py file and add the following DATABASES below
 
         #DATABASES = {
         #   'default': {
@@ -489,11 +487,11 @@ I will try to find solutions to fix all these bugs in the near future (of course
             'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
         }
 
-17. In your settings.py file, make sure DEBUG is set to True
+16. In your settings.py file, make sure DEBUG is set to True
 
         DEBUG = True
 
-18. In your settings.py file, replace STATIC_URL with these lines to host static and media files on Cloudinary
+17. In your settings.py file, make sure the static files section looks like this
 
         STATIC_URL = '/static/'
         STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
@@ -504,25 +502,16 @@ I will try to find solutions to fix all these bugs in the near future (of course
         MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
         DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-19. In your settings.py file, add the following (so that Bootstrap and Crispy Forms works properly)
-
-        MESSAGE_TAGS = {
-            messages.ERROR: 'danger',
-        }
-
-        CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
-20. In your terminal, run migrations
+18. In your terminal, run migrations
 
         python3 manage.py makemigrations
         python3 manage.py migrate
 
-21. Create a superuser for your site
+19. Create a superuser for your site
 
         python3 manage.py createsuperuser
 
-22. Run your app locally
+20. Run your app locally
 
         python3 manage.py runserver
 
@@ -532,7 +521,7 @@ I will try to find solutions to fix all these bugs in the near future (of course
 
         DEBUG = False
 
-2. Add X_FRAME_OPTIONS to your settings.py file and extend the ALLOWED_HOSTS, just under DEBUG
+2. Make sure that X_FRAME_OPTIONS and ALLOWED_HOSTS are added to your settings.py file, just under DEBUG
 
         X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -553,7 +542,7 @@ I will try to find solutions to fix all these bugs in the near future (of course
 
 ### Code
 
-There is really a lot of people and resources that have helped me tremendously to first of all understand what Django is all about and then also to implement certains bigger or smaller features. I will list them all below: 
+There is really a lot of people and resources that have helped me tremendously to first of all understand what Django is all about and then also to implement certain bigger or smaller features. I will list them all below: 
 
 - A fantastic resource was the Django video series of Corey Schafer, which I followed to implement the Login/Logout & User registration functionality - [see here](https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p)
 - I really enjoyed the Youtoube video from Traversy Media, to see what Django is capable of. He also taught me how to set up my models propely, how to implement the filter and search feature for my topics, and how to add comments to each post [see here](https://www.youtube.com/watch?v=PtQiiknWUcI&t=16635s)
@@ -576,7 +565,7 @@ The structure and the layout of this README file was inspired by several other R
 All other content on the website was written by me.
 
 ### Media
-All media files/memes are either uploaded by me or by the potential other people who use this website. My uploaded files (until Friday, 29th April 2022) come from 9GAG and do not violate any copyright.
+All media files/memes are either uploaded by me or by the potential other people who use this website. My uploaded files (until Friday, 29th April 2022) do not violate any copyright.
 
 ### Acknowledgements
 
