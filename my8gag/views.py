@@ -37,6 +37,8 @@ def home(request):
     This view is the main meme page of the project, in which a visitor
     can look at memes, filter for memes and see their profile information.
     """
+    # filter code from Traversy Media DJango series
+    # https://www.youtube.com/watch?v=PtQiiknWUcI&t=16635s
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     posts = Post.objects.filter(
         Q(topic__name__icontains=q) |
@@ -96,6 +98,7 @@ def postLike(request, pk):
     Function that takes care of adding/removing a user like.
     Authentication is taken care of in post_view.html.
     """
+    # code from CI blog project
     post = Post.objects.get(id=pk)
 
     if post.likes.filter(id=request.user.id).exists():
