@@ -109,7 +109,7 @@
                 <a href="{% url 'edit_profile' request.user.id %}" class="btn btn-info btn-profile w-75 mx-auto">Edit
                     profile</a>
                 <a href="{% url 'user_delete' request.user.id %}"
-                    class="delete-link mt-2 text-decoration-none">Delete</a>
+                    class="delete-link mt-2 text-decoration-none text-danger">Delete</a>
             </div>
         </div>
         {% else %}
