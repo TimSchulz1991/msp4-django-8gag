@@ -179,7 +179,7 @@ Throughout the development process, the stories (including their tasks) were con
 
 [Google Fonts](https://fonts.google.com/) was used to import an appropriate font for the site.
 
-#### Bootstrap
+#### Bootstrap (4.6)
 
 [Bootstrap](https://getbootstrap.com/) was used for styling and responsiveness.
 
@@ -231,6 +231,7 @@ The W3C Markup Validator, W3C CSS Validator Services, PEP8 and JSHint were used 
     - signal.py shows no errors
     - urls.py shows no errors
     - views.py shows no errors
+    - other files (settings.py/env.py) have errors about lines being too long, which cannot really be fixed
 
 - [JSHint](https://jshint.com/) shows no errors.
 
@@ -409,3 +410,178 @@ The following bugs were found but could not be fixed before hand-in, due to time
 - It is possible to upload certain files as memes that should not be uploaded. For most such files, the form will generate an error (e.g. json, zip etc.), but for example PDF files can be uploaded and then only show the alt text. 
 
 I will try to find solutions to fix all these bugs in the near future (of course only after cloning the repository). 
+
+## Deployment
+
+### Development
+
+1. Clone [this repository](https://github.com/TimSchulz1991/msp4-django-8gag)
+2. Install Python
+3. Install Django and create an app using these commands in your terminal
+
+        pip3 install Django==3.2 gunicorn
+        django-admin startproject your_project_name .
+        python3 manage.py startapp your_app_name
+        pip3 install -r requirements.txt
+        python3 manage.py makemigrations
+        python3 manage.py migrate
+
+- Make sure your INSTALLED_APPS in settings.py looks like this:
+
+        INSTALLED_APPS = [
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.messages',
+            'cloudinary_storage',
+            'django.contrib.staticfiles',
+            'cloudinary',
+            'crispy_forms',
+            'your_app_name',
+        ]
+
+4. Create or log in to an account on Heroku
+5. Create a new app on Heroku
+6. Open your app on Heroku and go to Resources, Add-ons and search for PostgreSQL
+7. Add PostgreSQL
+8. In the Deploy section on Heroku, go to Deployment method and add your GitHub repository
+9. Create or log in to an account on Cloudinary
+10. Copy your API Environment Variable
+11. Go back to Heroku, Settings and click on Reveal Config Vars
+12. Add your Cloudinary API variable, SECRET_KEY and DISABLE_COLLECTSTATIC. PostgreSQL should already be there.
+    - CLOUDINARY_URL | your_api_variable
+    - SECRET_KEY | your_choice ([Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/))
+    - DISABLE_COLLECTSTATIC | 1
+13. Create an env.py in the root directory, add it to .gitignore and add these lines at the top
+
+        import os
+
+        os.environ["DATABASE_URL"] = "postgresql from your Heroku config vars"
+        os.environ["SECRET_KEY"] = "your secret_key here"
+        os.environ["CLOUDINARY_URL"] = "cloudinary url here"
+
+14. At the top of your settings.py file, add these
+
+        from pathlib import Path
+        import os
+        import dj_database_url
+        from django.contrib.messages import constants as messages
+        if os.path.isfile('env.py'):
+            import env
+
+15. Add the SECRET_KEY and ALLOWED_HOSTS variables like this in your settings.py file
+
+        SECRET_KEY = os.environ.get('SECRET_KEY')
+
+        ALLOWED_HOSTS = ['localhost']
+
+16. Comment out DATABASES in your settings.py file and add the following DATABASES below
+
+        #DATABASES = {
+        #   'default': {
+        #       'ENGINE': 'django.db.backends.sqlite3',
+        #       'NAME': BASE_DIR / 'db.sqlite3',
+        #   }
+        #}
+
+        DATABASES = {
+            'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        }
+
+17. In your settings.py file, make sure DEBUG is set to True
+
+        DEBUG = True
+
+18. In your settings.py file, replace STATIC_URL with these lines to host static and media files on Cloudinary
+
+        STATIC_URL = '/static/'
+        STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+        MEDIA_URL = '/media/'
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+        DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+19. In your settings.py file, add the following (so that Bootstrap and Crispy Forms works properly)
+
+        MESSAGE_TAGS = {
+            messages.ERROR: 'danger',
+        }
+
+        CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+20. In your terminal, run migrations
+
+        python3 manage.py makemigrations
+        python3 manage.py migrate
+
+21. Create a superuser for your site
+
+        python3 manage.py createsuperuser
+
+22. Run your app locally
+
+        python3 manage.py runserver
+
+### Production
+
+1. In your settings.py file, set DEBUG to False
+
+        DEBUG = False
+
+2. Add X_FRAME_OPTIONS to your settings.py file and extend the ALLOWED_HOSTS, just under DEBUG
+
+        X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+        ALLOWED_HOSTS = ['your_app_name.herokuapp.com', 'localhost']
+
+3. On Heroku, go to Settings and Reveal Config Vars
+4. Remove DISABLE_COLLECTSTATIC
+5. On Heroku, go to Deploy and scroll down to choose whichever method to deploy you want
+    - You can automatically deploy the app everytime your GitHub repository is updated
+    - You can manually deploy the app
+6. If you need to login to Heroku and deploy via the terminal, this is how it works:
+    - write "heroku login -i" in the terminal and follow the steps to log in to Heroku
+    - write "git push heroku main" to deploy to Heroku
+7. On Heroku, go to the Deploy section and click on the "Open App" button in the top right corner
+
+
+## Credits
+
+### Code
+
+There is really a lot of people and resources that have helped me tremendously to first of all understand what Django is all about and then also to implement certains bigger or smaller features. I will list them all below: 
+
+- A fantastic resource was the Django video series of Corey Schafer, which I followed to implement the Login/Logout & User registration functionality - [see here](https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p)
+- I really enjoyed the Youtoube video from Traversy Media, to see what Django is capable of. He also taught me how to set up my models propely, how to implement the filter and search feature for my topics, and how to add comments to each post [see here](https://www.youtube.com/watch?v=PtQiiknWUcI&t=16635s)
+- Thanks to the following resources I understood how to extend my User model with a Profile model and how to connect them properly - [see here](https://www.youtube.com/watch?v=FdVuKt_iuSI&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=8&ab_channel=CoreySchafer) and [read here](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone)
+- The implementation of how to redirect back to the post page after deleting a comment on that page (instead of redirecting to homepage) was done with the help of my colleague Ali, who explained the concept of query strings to me.
+- CI Tutor service helped me to figure out how to POST an image file to Cloudinary
+- CI Blog project showed me how to implement a like functionality properly. As written above, next step for me will be to also implement that users can like a post on the feed.
+- Thanks to a tip from CI tutor service I found out about .annotate in the django documentation. This helped me to figure out how to count the amount of comments on the feed page - [read here](https://docs.djangoproject.com/en/3.2/topics/db/aggregation/#generating-aggregates-for-each-item-in-a-queryset)
+- How to implement the red Bootstrap errror messages - [read here](https://stackoverflow.com/questions/41369105/django-bootstrap-alerts-not-working-as-expected)
+- I asked for help on StackOverflow on how to not make an image upload mandatory - [read here](https://stackoverflow.com/questions/71855154/django-how-to-make-a-cloudinaryfield-not-mandatory-and-how-to-allow-user-to-de) and got a great answer
+- How to make my footer sticky on the bottom of the page - [read here](https://radu.link/make-footer-stay-bottom-page-bootstrap/)
+
+### Content 
+
+The structure and the layout of this README file was inspired by several other README files:
+    - the Code Institute [Sample Readme](https://github.com/Code-Institute-Solutions/SampleREADME)
+    - the README of a fellow student [Johan](https://github.com/JFrdrkssn/playbay/blob/main/README.md) - big thanks to him! 
+    - the README of a former student of my mentor - from [Abbibubble](https://github.com/Abibubble/ms4-lead-shot-hazard/blob/main/README.md)
+
+All other content on the website was written by me.
+
+### Media
+All media files/memes are either uploaded by me or by the potential other people who use this website. My uploaded files (until Friday, 29th April 2022) come from 9GAG and do not violate any copyright.
+
+### Acknowledgements
+
+- My colleague Ali for his ongoing help with all kinds of smaller issues and feedback throughout the project.
+- My mentor, Antonio Rodriguez, at [Code Institute](https://codeinstitute.net/), for continuous helpful feedback and support.
+- The always super friendly and helpful tutor support at Code Institute.
+
+
